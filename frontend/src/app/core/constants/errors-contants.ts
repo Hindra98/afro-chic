@@ -1,0 +1,1 @@
+export const technicalSupportEmail = "support.tech@8pusfx.com";
