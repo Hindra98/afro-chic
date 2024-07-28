@@ -1,0 +1,60 @@
+//FILE BEGIN
+$height: 20px;
+@import "theme-dictionary";
+
+// HERE DEFINE ONLY FIXED VALUED VARIABLES THAT DONT CHANGE WITH THE SELECTED THEME!!
+// THEMED VALUED VARIABLES SHOULD BE DEFINED AT _theme-dictionary.scss
+
+$key-frame-accent-color: map-get(map-get($themes, "default"), "color-accent2-base");
+$font-family-regular: "Inter";
+$font-family-default: $font-family-regular;
+$font-weight-default: 400;
+$font-size: 16px;
+$font-family-condensed: "Inter";
+$gutter-sides: 10px;
+$twelvegrid-padding: 0 $gutter-sides;
+$screen-margin-default: 20px;
+/*
+Use this to set singled valued properties properties that have the searched value at the end
+ex @include theme-aware("stroke", "color-accent1-800", '** empty if no $multiProprety argument **', "!important"); !important is the fourth argument (optional)
+*/
+@mixin theme-aware($key, $color, $multiProperty: "", $important: "") {
+    @each $theme-name, $theme-color in $themes {
+        .theme-#{$theme-name} & {
+            @if ($multiProperty != "") {
+                @if ($important!= "") {
+                    #{$key}: #{$multiProperty} map-get(map-get($themes, $theme-name), $color) #{$important};
+                } @else {
+                    #{$key}: #{$multiProperty} map-get(map-get($themes, $theme-name), $color);
+                }
+            } @else {
+                @if ($important!= "") {
+                    #{$key}: map-get(map-get($themes, $theme-name), $color) #{$important};
+                } @else {
+                    #{$key}: map-get(map-get($themes, $theme-name), $color);
+                }
+            }
+        }
+    }
+}
+
+// use this to set multi valued properties that
+// have the searched value reapeted or not at the end
+@mixin theme-aware-replace($key, $color, $text, $wildCard) {
+    @each $theme-name, $theme-color in $themes {
+        .theme-#{$theme-name} & {
+            #{$key}: #{str-replace($text, $wildCard, map-get(map-get($themes, $theme-name), $color))};
+        }
+    }
+}
+
+@function str-replace($string, $search, $replace: "") {
+    $index: str-index($string, $search);
+
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace +
+            str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+
+    @return $string;
+}

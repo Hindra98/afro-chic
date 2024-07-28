@@ -1,0 +1,102 @@
+@use "../common";
+
+#menu-wrapper {
+  overflow-y: auto !important;
+  scrollbar-width: none !important;
+  background-color: #eee !important;
+
+  #sidebarmenu {
+    height: common.$height !important;
+    #maintext {
+      max-height: 100vh !important;
+
+      .menu-content::-webkit-scrollbar {
+        width: 5px !important;
+      }
+
+      .menu-content::-webkit-scrollbar-track {
+        background-color: rgba(44, 47, 124, .1) !important;
+        border-radius: 100px !important;
+      }
+
+      .menu-content::-webkit-scrollbar-thumb {
+        background-color: rgba(44, 47, 124, .5) !important;
+        border-radius: 100px !important;
+      }
+
+      .menu-content {
+        height: calc(100vh - 48px);
+        font-family: common.$font-rg;
+        background-color: #eee !important;
+        overflow-y: auto;
+
+        button {
+          background-color: common.$primary-color;
+          color: #fff;
+          font-size: 1.2em;
+          font-family: common.$font-lt;
+          transition: background-color 0.2s ease;
+        }
+
+        #msg_error,
+        #msg_success {
+          button {
+            background-color: inherit;
+            color: inherit;
+          }
+        }
+
+        .error {
+          color: #f00;
+          margin-left: 2px;
+          font-family: common.$font-lt;
+        }
+
+        a {
+          color: common.$primary-color !important;
+        }
+
+        h1 {
+          font-family: common.$font-bd;
+        }
+
+        .input-dashboard {
+          border: 1px solid common.$primary-color !important;
+          color: common.$primary-color !important;
+        }
+
+        .login-input {
+          appearance: none !important;
+          font-family: common.$font-rg !important;
+          background-color: transparent !important;
+          color: common.$primary-color !important;
+          border-color: transparent !important;
+          border-width: 1px;
+          border-radius: 0px;
+          padding-top: 0.5rem;
+          padding-right: 0.75rem;
+          padding-bottom: 0.5rem;
+          padding-left: 0.75rem;
+          font-size: 1rem;
+          line-height: 1.5rem;
+        }
+
+        .login-input:focus {
+          outline: 2px solid transparent !important;
+          box-shadow: 0 0 #0000;
+          border-color: transparent !important;
+        }
+
+        .login-input::placeholder {
+          color: common.$primary-color;
+          opacity: 1;
+        }
+
+        input::-ms-reveal,
+        input::-ms-clear {
+          display: none;
+        }
+      }
+    }
+  }
+}

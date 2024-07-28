@@ -1,0 +1,104 @@
+@use 'common';
+
+.user-preferences {
+    .form-fields {
+        color: #000 !important;
+        font-family: common.$font-rg;
+        border: 1px solid transparent;
+        border-radius: 10px;
+
+        .user-mid-help {
+            color: grey !important;
+
+            div span {
+                font-weight: bold !important;
+            }
+        }
+
+        .error {
+            color: #f00 !important;
+            margin-left: 2px !important;
+            font-family: common.$font-lt !important;
+        }
+
+        h1 {
+            font-family: common.$font-bd;
+        }
+
+        label {
+            cursor: pointer;
+        }
+
+        label.disabled {
+            cursor: default;
+        }
+
+        button.link:disabled {
+            color: #000;
+        }
+
+        button.disabled {
+            color: #fff !important;
+            background-color: common.$primary-color-pl !important;
+        }
+
+        .input-notify {
+            border: 1px solid common.$primary-color !important;
+            color: #000 !important;
+            appearance: none !important;
+            font-family: common.$font-rg !important;
+            background-color: transparent !important;
+            color: #000 !important;
+            border-width: 1px;
+            border-radius: 0px;
+            padding-top: 0.5rem;
+            padding-right: 0.75rem;
+            padding-bottom: 0.5rem;
+            padding-left: 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5rem;
+        }
+
+        .input-notify select:focus {
+            outline: 2px solid transparent !important;
+            box-shadow: 0 0 #0000;
+            border-color: transparent !important;
+        }
+
+        .input-notify::placeholder {
+            color: #000;
+            opacity: 1;
+        }
+
+        .input-notify.disabled,
+        .input-notify.disabled.e-input-focus {
+            color: grey !important;
+            border-color: grey !important;
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            -webkit-appearance: none !important;
+            appearance: none !important;
+            outline: 0;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number],
+        .pincode-input {
+            -webkit-appearance: textfield;
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+
+        .profile-picture img {
+            border: 4px solid darkgrey;
+            border-radius: 50%;
+        }
+    }
+}

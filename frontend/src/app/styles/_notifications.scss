@@ -1,0 +1,198 @@
+@use "common";
+
+.notifications-component {
+  $primary-transparent: #aaa;
+  width: 100% !important;
+
+  .notif-size-details {
+    font-size: 12px !important;
+    color: #888 !important;
+  }
+}
+
+#notifications-grid {
+  td.e-rowcell {
+    font-size: 12px !important;
+  }
+
+  .e-gridpager.e-pager {
+    display: none;
+  }
+
+  .e-headercelldiv span {
+    font-family: common.$font-bd !important;
+    font-weight: 1000 !important;
+  }
+
+  .no-data {
+    font-size: large;
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    span.icon.search {
+      -webkit-animation: rotating 2s linear infinite;
+      animation: rotating 2s linear infinite;
+    }
+  }
+
+  .e-content .read {
+    color: common.$primary-color;
+  }
+
+  .e-checkbox-wrapper .e-frame.e-check,
+  .e-css.e-checkbox-wrapper .e-frame.e-check {
+    background-color: common.$primary-color !important;
+    border-color: transparent !important;
+  }
+
+  .e-content {
+    // overflow: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  .e-headercontent {
+    max-width: 100% !important;
+  }
+
+  .e-content::-webkit-scrollbar {
+    width: 5px !important;
+  }
+
+  .e-content::-webkit-scrollbar-track {
+    background-color: rgba(44, 47, 124, 0.1) !important;
+    border-radius: 100px !important;
+  }
+
+  .e-content::-webkit-scrollbar-thumb {
+    background-color: rgba(44, 47, 124, 0.5) !important;
+    border-radius: 100px !important;
+  }
+}
+
+#notifications-grid_dialogEdit_wrapper {
+  width: 400px !important;
+
+  .view-notification-template {
+    label {
+      font-weight: bold !important;
+    }
+  }
+}
+
+@-webkit-keyframes rotating {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(720deg);
+    transform: rotate(720deg);
+  }
+}
+
+@keyframes rotating {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(720deg);
+    transform: rotate(720deg);
+  }
+}
+
+
+#apiSidebar {
+  label {
+    cursor: pointer;
+  }
+
+  .title {
+    font-family: common.$font-bd !important;
+    color: common.$primary-color !important;
+  }
+
+  .input-dashboard,
+  .input-notify {
+    background-color: #fff !important;
+    border: #ddd 1px solid !important;
+    border-radius: 5px !important;
+    height: 39px !important;
+  }
+  .input-dashboard.disabled {
+    background-color: #eee !important;
+    border: #ccc 1px solid !important;
+  }
+
+  textarea.input-sidebar {
+    background-color: #fff !important;
+    border: #ccc 1px solid !important;
+    border-radius: 5px !important;
+    resize: none !important;
+  }
+
+  #tenantSidebarTab {
+
+    .e-tab-header {
+      border-bottom: transparent !important;
+
+      .e-indicator {
+        background-color: transparent !important;
+      }
+
+      .e-tab-wrap {
+
+        &:hover .e-tab-text {
+          color: common.$primary-color !important;
+        }
+
+        .e-tab-text:hover {
+          color: common.$primary-color !important;
+        }
+      }
+
+    }
+
+    .e-tab-wrap[aria-selected=true] .e-tab-text {
+      border-bottom: 1px solid common.$primary-color !important;
+      color: common.$primary-color !important;
+    }
+
+  }
+
+
+  &::-webkit-scrollbar {
+    width: 5px !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgba(44, 47, 124, 0.1) !important;
+    border-radius: 100px !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(44, 47, 124, 0.5) !important;
+    border-radius: 100px !important;
+  }
+}
+
+
+
+.status.inactive {
+  background-color: #ffd7cc;
+  color: #e60000;
+}
+
+.status.active {
+  background-color: #ccffcc;
+  color: #00cc00;
+}
+
+.sidebar-grid .input-dashboard.disabled {
+  background-color: #999 !important;
+  border: #ccc 1px solid !important;
+}

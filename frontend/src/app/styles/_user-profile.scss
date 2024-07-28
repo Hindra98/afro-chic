@@ -1,0 +1,318 @@
+@use 'common';
+
+.user-profile {
+    
+    .e-footer-content {
+        color: #fff !important;
+        font-family: common.$font-lt !important;
+
+        .cancelBtn {
+            background-color: grey !important;
+            color: #fff !important;
+            font-family: common.$font-lt;
+        }
+
+        .cancelBtn:hover {
+            background-color: #808080a0 !important;
+        }
+
+        .okBtn {
+            background-color: common.$primary-color !important;
+            color: #fff !important;
+            font-family: common.$font-lt;
+        }
+
+        .okBtn:hover {
+            background-color: common.$primary-color-pl !important;
+        }
+    }
+
+    .form-fields {
+        color: #000 !important;
+        font-family: common.$font-rg;
+        border: 1px solid transparent;
+        border-radius: 10px;
+
+        .user-mid-help {
+            color: #808080 !important;
+
+            div span {
+                font-weight: bold !important;
+            }
+        }
+
+        .error {
+            color: #f00 !important;
+            margin-left: 2px !important;
+            font-family: common.$font-lt !important;
+        }
+
+        h1 {
+            font-family: common.$font-bd;
+        }
+
+        label {
+            cursor: pointer;
+        }
+
+        label.disabled {
+            cursor: default;
+        }
+
+        button.link:disabled {
+            color: #000;
+        }
+
+        button.disabled {
+            color: #fff !important;
+            background-color: common.$primary-color-pl !important;
+        }
+
+        .input-notify {
+            border: 1px solid common.$primary-color !important;
+            color: #000 !important;
+            appearance: none !important;
+            font-family: common.$font-rg !important;
+            background-color: transparent !important;
+            border-width: 1px;
+            border-radius: 0px;
+            padding-top: 0.5rem;
+            padding-right: 0.75rem;
+            padding-bottom: 0.5rem;
+            padding-left: 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5rem;
+        }
+
+        .input-notify select:focus {
+            outline: 2px solid transparent !important;
+            box-shadow: 0 0 #0000;
+            border-color: transparent !important;
+        }
+
+        .input-notify::placeholder {
+            color: #000 !important;
+            opacity: 1;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number],
+        .pincode-input {
+            -webkit-appearance: textfield;
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+
+        .profile-picture img {
+            border: 4px solid darkgrey;
+            border-radius: 50%;
+        }
+    }
+
+    .login-input {
+        appearance: none;
+        font-family: common.$font-rg;
+        background-color: transparent;
+        color: #000 !important;
+        border-color: transparent;
+        border-width: 1px;
+        border-radius: 0px;
+        padding-top: 0.5rem;
+        padding-right: 0.75rem;
+        padding-bottom: 0.5rem;
+        padding-left: 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    .login-input:focus {
+        outline: 2px solid transparent;
+        box-shadow: 0 0 #0000;
+        border-color: transparent;
+    }
+
+    .login-input::placeholder {
+        color: #000 !important;
+        opacity: 1;
+    }
+
+    input::-ms-reveal,
+    input::-ms-clear {
+        display: none;
+    }
+
+}
+
+#dialogModalUserProfile {
+    color: #000 !important;
+    max-width: 450px !important;
+    min-width: 350px !important;
+    width: 40% !important;
+    font-family: common.$font-lt !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    
+    .e-dlg-content {
+        color: #000 !important;
+        width: 100% !important;
+        padding: 0 !important;
+        background-color: transparent !important;
+        border: none !important;
+        overflow: hidden !important;
+    }
+
+    .e-dlg-content .card {
+        color: #000 !important;
+        width: 100% !important;
+        height: 65vh !important;
+
+        .verify-contact {
+            height: 20vh !important;
+
+            img {
+                height: 160px !important;
+            }
+        }
+
+        button {
+            color: #fff !important;
+        }
+
+        a.get-code-again {
+            color: common.$primary-color !important;
+            font-weight: 200 !important;
+            font-family: common.$font-rg !important;
+        }
+
+        .error {
+            color: #f00 !important;
+            margin-left: 2px !important;
+            font-family: common.$font-lt !important;
+        }
+    }
+
+
+    .user-mid-help {
+        color: grey !important;
+        width: 66% !important;
+    }
+
+    input::-ms-reveal,
+    input::-ms-clear {
+        display: none;
+    }
+
+    .input-dashboard {
+        border-color: #0006 !important;
+        color: #0006 !important;
+        font-family: common.$font-rg !important;
+        border-radius: 10px !important;
+
+        .text-in-input {
+            color: #fff !important;
+        }
+
+        .login-input {
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+            border-top-right-radius: 10px !important;
+            border-bottom-right-radius: 10px !important;
+        }
+    }
+
+    .input-dashboard:has(.text-in-input) {
+        border: 1px solid #0006 !important;
+        color: #0006 !important;
+        font-family: common.$font-rg !important;
+
+        .text-in-input {
+            background-color: #0006 !important;
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+
+    .login-input {
+        appearance: none !important;
+        font-family: common.$font-rg !important;
+        background-color: white !important;
+        color: #0006 !important;
+        border-color: transparent !important;
+        border-width: 1px;
+        border-radius: 0px;
+        padding-top: 0.5rem;
+        padding-right: 0.75rem;
+        padding-bottom: 0.5rem;
+        padding-left: 0.5rem !important;
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    .login-input:focus {
+        outline: 2px solid transparent !important;
+        box-shadow: 0 0 #0000;
+        border-color: transparent !important;
+    }
+
+    .login-input::placeholder {
+        color: #000 !important;
+        opacity: 1;
+    }
+
+    .pincode-input {
+        color: #000;
+        background-color: #fff !important;
+        font-family: common.$font-rg;
+        font-size: 1.6em;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        width: 1.3em !important;
+        height: 2.1em !important;
+        border-color: #0006 !important;
+    }
+
+    .pincode-input:focus {
+        outline: none !important;
+        box-shadow: 0 0 #0000;
+        border-color: #000 !important;
+    }
+
+    .pincode-input::placeholder {
+        color: #000 !important;
+        opacity: 0.3;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number],
+    .pincode-input {
+        -webkit-appearance: textfield;
+        -moz-appearance: textfield;
+        appearance: textfield;
+    }
+
+    @media screen and (max-height: 800px) {
+
+        .e-dlg-content .card {
+            height: 90vh !important;
+        }
+
+    }
+}

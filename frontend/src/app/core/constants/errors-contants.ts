@@ -1,0 +1,1 @@
+export const technicalSupportEmail = "support.tech@afrochic.com";
