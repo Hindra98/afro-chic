@@ -1,6 +1,4 @@
-import React from 'react';
-import { log } from '../../core/logging';
-import { createClientErrorLogParcel } from '../logging/log-building';
+
 import ErrorPage from "./error-page";
 import { ErrorBoundary } from "react-error-boundary";
 import {
@@ -8,18 +6,15 @@ import {
     useRouteError,
 } from 'react-router-dom';
 import "../../styles/_error-handling.scss"
-import { useLocalizer } from "src/app/core/Localization";
-import { loadTranslationResources } from "src/app/core/Localization/load-language-resource";
 import { technicalSupportEmail } from '../constants/errors-contants';
-import MailTo from 'src/app/components/shared/mail-to';
+import { loadTranslationResources } from '../Localization/load-language-resource';
+import { useLocalizer } from '../Localization';
+import MailTo from '../../components/shared/mail-to';
 
 export default function FxErrorBoundary(props) {
     return (
         <ErrorBoundary FallbackComponent={ErrorPage} onError={(error, errorInfo) => {
-        log.fatal({
-            ...createClientErrorLogParcel(error),
-            errorInfo
-        }, `The application has just stopped working unexpectedly!`);
+          console.log("Error: " + error + ": " + errorInfo)
 		
 		// record the error in an APM tool...
             }}
@@ -42,7 +37,7 @@ export function RouteErrorBoundary() {
                     <div className="h-center gfont">
                         <h1>{commonLocalizer("MODULE_COMMON_ROUTE_ERROR_BOUNDARY_SOMETHING_WENT_WRONG")} 😢</h1>
                         <div className="fs-16 line-gap">
-                            <p><span>{commonLocalizer("MODULE_COMMON_ROUTE_ERROR_BOUNDARY_CAUSE")}</span>{`${ error.cause === undefined ?  commonLocalizer("MODULE_COMMON_ROUTE_ERROR_BOUNDARY_CAUSE_UNDEFINED") : error.cause}`}</p>
+                            <p><span>{commonLocalizer("MODULE_COMMON_ROUTE_ERROR_BOUNDARY_CAUSE")}</span>{commonLocalizer("MODULE_COMMON_ROUTE_ERROR_BOUNDARY_CAUSE_UNDEFINED")}</p>
                             <p><span>{commonLocalizer("MODULE_COMMON_ROUTE_ERROR_BOUNDARY_NAME")}</span>{`${error.name}`}</p>
                             <p><span>{commonLocalizer("MODULE_COMMON_ROUTE_ERROR_BOUNDARY_MESSAGE")}</span>{`${error.message}`}</p>
                             <p><span>{commonLocalizer("MODULE_COMMON_ROUTE_ERROR_BOUNDARY_DETAILS")}</span>{`${error.stack}`}</p>
@@ -50,7 +45,7 @@ export function RouteErrorBoundary() {
                                 <div className="">
                                     <h2>{commonLocalizer("MODULE_COMMON_ROUTE_ERROR_BOUNDARY_GO_AHEAD_EMAIL")}</h2>
                                     <div className="e-link">
-                                       <MailTo email={technicalSupportEmail} >{technicalSupportEmail}</MailTo>
+                                       <MailTo email={technicalSupportEmail} />
                                     </div>
                                 </div>
                             </div>

@@ -1,0 +1,35 @@
+@use 'common';
+
+div.search {
+  border: 1px solid transparent;
+  background-color: #fff !important;
+
+  span.e-icons:hover {
+    color: common.$primary-color-pl;
+  }
+
+  .search-input {
+    appearance: none;
+    font-family: common.$font-rg;
+    background-color: transparent;
+    border-color: transparent;
+    border-width: 1px;
+    border-radius: 0px;
+    padding-top: 0.25rem;
+    padding-right: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 0.25rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .search-input:focus {
+    outline: 2px solid transparent !important;
+    box-shadow: 0 0 #0000;
+    border-color: transparent !important;
+  }
+
+  .search-input::placeholder {
+    opacity: 1;
+  }
+}

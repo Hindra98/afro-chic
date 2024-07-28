@@ -1,0 +1,54 @@
+@use "../common";
+
+.dashboard {
+  $primary-transparent: #aaa;
+
+
+  div.button button {
+    color: #000 !important;
+    background-color: #aaa !important;
+    border: 1px solid #aaa !important;
+    border-radius: 3px !important;
+    font-family: common.$font-rg !important;
+    font-size: 13px !important;
+    padding: 2px 20px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      font-family: common.$font-bd !important;
+      background-color: common.$primary-color !important;
+      color: #fff !important;
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+
+  // .welcome-image img {
+  //   position: absolute;
+  //   top: 0px;
+  //   left: 0px;
+  //   width: 50%;
+  //   height: 50%;
+  //   // box-shadow: 10px 10px #78e8c8;
+  // }
+
+  // .FadeAway {
+  //   position: absolute;
+  //   top: 0px;
+  //   left: 0px;
+  //   width: 50%;
+  //   height: 50%;
+  //   background: transparent;
+  //   background: linear-gradient(top, rgba(247, 133, 105, 0.91) 0%, rgba(247, 193, 105, 0.91) 100%);
+  //   background: -moz-linear-gradient(top, rgba(247, 133, 105, 0.91) 0%, rgba(247, 193, 105, 0.91) 100%);
+  //   background: -ms-linear-gradient(top, rgba(247, 133, 105, 0.91) 0%, rgba(247, 193, 105, 0.91) 100%);
+  //   background: -o-linear-gradient(top, rgba(247, 133, 105, 0.91) 0%, rgba(247, 193, 105, 0.91) 100%);
+  //   background: -webkit-linear-gradient(top, rgba(247, 133, 105, 0.91) 0%, rgba(247, 193, 105, 0.91) 100%);
+  //   -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#550000FF, endColorstr=#550000FF);
+  //   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00ffffff, endColorstr=#ffffffff);
+  // }
+}

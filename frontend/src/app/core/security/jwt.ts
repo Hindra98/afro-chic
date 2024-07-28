@@ -10,7 +10,7 @@ export class Jwt {
     }
 
     private static findClaimValue = (decodedToken: string, key: claim) : string => {
-        var claim = "";
+        let claim = "";
 
         decodedToken.split(",").filter((item) => item.toLocaleLowerCase().includes(`${key}`))
           .forEach(value => {
@@ -25,14 +25,14 @@ export class Jwt {
     }
 
     public static getClaim = (token: string, key: claim): string => {
-        let decodedToken: string = JSON.parse(this.decode(token));
+        const decodedToken: string = JSON.parse(this.decode(token));
         return this.findClaimValue(decodedToken, key);
     };
 
     public static getClaims = (token: string, keys: claim[]) : Map<claim, string> => {
 
-        let claims: Map<claim, string> = new Map<claim, string>();
-        let decodedToken: string = JSON.parse(this.decode(token));
+        const claims: Map<claim, string> = new Map<claim, string>();
+        const decodedToken: string = JSON.parse(this.decode(token));
 
         for(let i = 0; i< keys.length; i++){
             claims.set(keys[i], this.findClaimValue(decodedToken, keys[i]));
@@ -46,12 +46,12 @@ export class Jwt {
 
     public static isAccessTokenExpired(token: string) : boolean {
         
-        let decodedToken: string = JSON.parse(this.decode(token));
-        let tokenExpires = this.findClaimValue(decodedToken, 'exp');
+        const decodedToken: string = JSON.parse(this.decode(token));
+        const tokenExpires = this.findClaimValue(decodedToken, 'exp');
         let isExpired: boolean = false;
 
         if(tokenExpires){
-            let expires = toInt(tokenExpires);
+            const expires = toInt(tokenExpires);
             if(expires * 1000 < Date.now())
                 isExpired = true;
 

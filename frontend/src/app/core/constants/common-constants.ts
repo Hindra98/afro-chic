@@ -36,5 +36,7 @@ export const ColorConstants = {
     BLACK: "black",
     WHITE: "white",
 }
-export const DEFAULT_TENANT_ID = "a2a13415-1b6d-4206-b7d8-3d0e3d6ac7b2";
 
+export const CardConstant = {
+  CART: "cart",
+}

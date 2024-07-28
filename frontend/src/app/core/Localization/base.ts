@@ -8,7 +8,7 @@ const culturesWithBase : string[] = ['en','fr'];
 
 export const IsLanguageTranslationAvailable = (languge : string) => {
 
-    var index = culturesWithBase.findIndex(l => l === languge);
+    const index = culturesWithBase.findIndex(l => l === languge);
     if(index > -1){
         return true;
     }

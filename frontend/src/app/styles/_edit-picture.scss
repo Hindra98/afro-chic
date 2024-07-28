@@ -1,0 +1,77 @@
+@use 'common';
+
+.e-img-editor-profile .e-profile {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+
+.e-custom-wrapper {
+    position: relative;
+}
+
+.e-custom-edit {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    top: calc(100% - 22px);
+    left: calc(100% - 23px);
+}
+
+#custom-edit .e-custom-icon::before {
+    position: absolute;
+    text-align: center !important;
+    margin: auto !important;
+    font-size: 14px;
+    color: common.$primary-color;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: initial;
+}
+
+#custom-edit:hover {
+    cursor: pointer;
+}
+
+canvas#img-canvas {
+    border-radius: 50%;
+    max-width: 75px !important;
+    max-height: 75px !important;
+    min-width: 75px !important;
+    min-height: 75px !important;
+}
+
+.e-img-custom-open {
+    float: left;
+    margin-left: 0 !important;
+}
+
+.e-img-custom-reset {
+    float: left;
+}
+
+.e-profile .e-custom-img,
+.e-profile .e-custom-file {
+    display: none;
+}
+
+.e-bigger #profile-dialog .e-dlg-header {
+    font-size: 18px !important;
+}
+
+#profile-dialog .e-dlg-content>div {
+    height: 100%;
+    width: 100%;
+}
+
+.e-bigger .e-custom-img-btn {
+    font-size: 14px !important;
+    padding: 5px !important;
+}
+
+.e-img-editor-profile .e-hide {
+    display: none;
+}

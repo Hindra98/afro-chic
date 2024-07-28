@@ -1,0 +1,91 @@
+@use '../common';
+
+.card.form-fields {
+  background-color: #fff;
+  box-shadow: 1px 1px 10px rgba(175, 175, 175, 0.55);
+  transition: all .3s;
+  color: #000 !important;
+  font-family: common.$font-rg;
+  overflow: hidden !important;
+
+  .card-content {
+    height: 100% !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    &::-webkit-scrollbar {
+      width: 5px !important;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: rgba(44, 47, 124, .1) !important;
+      border-radius: 100px !important;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(44, 47, 124, .5) !important;
+      border-radius: 100px !important;
+    }
+
+  }
+}
+
+.user-mid-help {
+  color: grey !important;
+}
+
+.error {
+  color: #f00;
+  margin-left: 2px;
+  font-family: common.$font-lt;
+}
+
+a {
+  color: common.$primary-color !important;
+  font-family: common.$font-bd;
+}
+
+a.disabled {
+  cursor: default;
+  pointer-events: none !important;
+  text-decoration: none !important;
+}
+
+h1 {
+  font-family: common.$font-bd;
+}
+
+button.link {
+  background-color: transparent !important;
+  color: common.$primary-color;
+  text-decoration: underline;
+  font-weight: 500;
+  font-family: common.$font-rg;
+  font-size: 1rem;
+  transition: all 1s ease;
+}
+
+button.link:active,
+button.link:hover,
+button.link:focus {
+  color: common.$primary-color-pl !important;
+  font-weight: 500 !important;
+}
+
+button.link:disabled {
+  color: #000;
+}
+
+button.disabled {
+  background-color: common.$primary-color-pl !important;
+}
+
+.card-footer a {
+  color: common.$primary-color !important;
+  font-family: common.$font-rg !important;
+
+  &:hover {
+    font-family: common.$font-bd !important;
+    color: common.$primary-color-pl !important;
+  }
+}

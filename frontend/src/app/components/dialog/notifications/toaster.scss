@@ -1,0 +1,68 @@
+@import "app/styles/theme";
+
+#app-toaster {
+    overflow: hidden;
+
+    > ul {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        width: 300px;
+        color: #eee;
+        z-index: 10000;
+
+        > li {
+            display: flex;
+            justify-content: center;
+            animation: 10s toast-opening ease;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            margin: 5px;
+            padding: 10px;
+            background: #222;
+            border-radius: 3px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+            font-family: $font-family-regular;
+            font-weight: 400;
+            font-size: 13px;
+            width: 100%;
+
+            &.success {
+                background: #8faf00;
+            }
+
+            &.warning {
+                background: #e38400;
+            }
+
+            &.error {
+                background: #e32d00;
+            }
+
+            &:hover {
+                animation-play-state: paused;
+            }
+        }
+    }
+}
+
+@keyframes toast-opening {
+    from {transform: translateX(120%);}
+    10% {transform: translateX(-5%);}
+    12% {transform: translateX(0);}
+    16% {transform: translateX(0);}
+    80% {transform: translateX(0);}
+    85% {transform: translateX(-10%);}
+    to {transform: translateX(120%);}
+}
+
+@keyframes goDown {
+    from {transform: translateY(0);}
+    to {transform: translateY(100%);}
+}

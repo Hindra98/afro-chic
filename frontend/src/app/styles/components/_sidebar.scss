@@ -1,0 +1,300 @@
+@use '../common';
+
+.sidebar {
+  background-color: #ddd !important;
+  transition: all .3s ease !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  scrollbar-width: none !important;
+  height: calc(100vh - 50px) !important;
+
+  &.open {
+    width: 270px !important;
+    min-width: 270px !important;
+    max-width: 270px !important;
+
+    .sidebar-menu {
+      width: 270px !important;
+
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .menu-item#package,
+    .menu-item#management,
+    .menu-item#dashboard {
+      font-size: 16px !important;
+
+      .e-title {
+        display: none !important;
+        transition: 2s ease-in-out !important;
+      }
+    }
+  }
+
+  &.close {
+    width: 50px !important;
+    min-width: 50px !important;
+    max-width: 50px !important;
+
+    .sidebar-menu {
+      width: 50px !important;
+    }
+
+    .sidebar-menu {
+      min-width: 0;
+      width: 50px !important;
+      font-size: 0 !important;
+    }
+
+    div.menu-item {
+      font-size: 0 !important;
+
+      .menu-item {
+        font-size: 14px !important;
+
+        .icon {
+          font-size: 14px !important;
+        }
+      }
+
+      .arrow {
+        display: none !important;
+      }
+
+      .icon {
+        font-size: 20px !important;
+        padding: 0;
+      }
+    }
+
+    .menu-item#package,
+    .menu-item#management,
+    .menu-item#dashboard {
+      font-size: 0px !important;
+
+      .e-title::before {
+        font-size: 30px !important;
+        font-family: common.$font-bd !important;
+        color: #000 !important;
+      }
+    }
+
+    .menu-item#package:hover .e-title::before,
+    .menu-item#management:hover .e-title::before,
+    .menu-item#dashboard:hover .e-title::before {
+      color: black !important;
+    }
+  }
+
+  .sidebar-menu {
+    height: calc(100vh - 50px) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    * {
+      color: #000 !important;
+    }
+  }
+
+  .sidebar-menu::-webkit-scrollbar {
+    width: 5px !important;
+  }
+
+  .sidebar-menu::-webkit-scrollbar-track {
+    background-color: rgba(44, 47, 124, .1) !important;
+    border-radius: 100px !important;
+  }
+
+  .sidebar-menu::-webkit-scrollbar-thumb {
+    background-color: rgba(44, 47, 124, .5) !important;
+    border-radius: 100px !important;
+  }
+
+  div.menu-item {
+    transition-delay: 30ms !important;
+    font-weight: 600 !important;
+    transition: all .1s ease;
+    margin: 0;
+    font-size: 14px !important;
+    z-index: 3;
+
+    &:hover {
+      background-color: #aaa !important;
+    }
+
+    .group-menu-item {
+      background-color: #ddd !important;
+      min-width: 150px !important;
+      z-index: 1;
+
+      .arrow {
+        opacity: 1 !important;
+        overflow: auto !important;
+      }
+    }
+  }
+
+  .menu-item#setting {
+    box-sizing: border-box !important;
+    margin-top: auto !important;
+    border-top: 1px solid common.$primary-color !important;
+    * {
+      top: calc(100vh - 77px) !important;
+    }
+  }
+
+  .arrow {
+    width: 100% !important;
+    transition: all .3s ease !important;
+  }
+
+  .icon,
+  .separate,
+  .e-title {
+    transition: all .3s ease !important;
+  }
+
+  .separate {
+    border-bottom: 1px solid common.$primary-color !important;
+    width: 80% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .separate,
+  .e-title {
+    cursor: default !important;
+    pointer-events: none !important;
+  }
+
+  .menu-item#package:hover,
+  .menu-item#management:hover,
+  .menu-item#dashboard:hover,
+  .menu-item#package:hover {
+    color: #000 !important;
+    background-color: inherit !important;
+    cursor: default !important;
+  }
+
+  .menu-item#package,
+  .menu-item#management,
+  .menu-item#dashboard {
+    font-family: common.$font-bd !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 20px !important;
+    margin-bottom: 10px !important;
+    background-color: transparent !important;
+    cursor: default;
+    color: gray !important;
+    text-align: center;
+  }
+}
+
+.sidebar.close .menu-item .a::before {
+  content: "A" !important;
+}
+
+.sidebar.close .menu-item .b::before {
+  content: "B" !important;
+}
+
+.sidebar.close .menu-item .c::before {
+  content: "C" !important;
+}
+
+.sidebar.close .menu-item .d::before {
+  content: "D" !important;
+}
+
+.sidebar.close .menu-item .e::before {
+  content: "E" !important;
+}
+
+.sidebar.close .menu-item .f::before {
+  content: "F" !important;
+}
+
+.sidebar.close .menu-item .g::before {
+  content: "G" !important;
+}
+
+.sidebar.close .menu-item .h::before {
+  content: "H" !important;
+}
+
+.sidebar.close .menu-item .i::before {
+  content: "I" !important;
+}
+
+.sidebar.close .menu-item .j::before {
+  content: "J" !important;
+}
+
+.sidebar.close .menu-item .k::before {
+  content: "K" !important;
+}
+
+.sidebar.close .menu-item .l::before {
+  content: "L" !important;
+}
+
+.sidebar.close .menu-item .m::before {
+  content: "M" !important;
+}
+
+.sidebar.close .menu-item .n::before {
+  content: "N" !important;
+}
+
+.sidebar.close .menu-item .o::before {
+  content: "O" !important;
+}
+
+.sidebar.close .menu-item .p::before {
+  content: "P" !important;
+}
+
+.sidebar.close .menu-item .q::before {
+  content: "Q" !important;
+}
+
+.sidebar.close .menu-item .r::before {
+  content: "R" !important;
+}
+
+.sidebar.close .menu-item .s::before {
+  content: "S" !important;
+}
+
+.sidebar.close .menu-item .t::before {
+  content: "T" !important;
+}
+
+.sidebar.close .menu-item .u::before {
+  content: "U" !important;
+}
+
+.sidebar.close .menu-item .v::before {
+  content: "V" !important;
+}
+
+.sidebar.close .menu-item .w::before {
+  content: "W" !important;
+}
+
+.sidebar.close .menu-item .x::before {
+  content: "X" !important;
+}
+
+.sidebar.close .menu-item .y::before {
+  content: "Y" !important;
+}
+
+.sidebar.close .menu-item .z::before {
+  content: "Z" !important;
+}

@@ -1,4 +1,4 @@
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError } from 'axios';
 
 /**
  * Creates a log parcel entry from error
@@ -48,7 +48,9 @@ export function createClientHttpErrorLogParcel(error: AxiosError) {
     let clientHttpError = error.message?.toString();
     if(typeof error.message !== 'string') try {
         clientHttpError = JSON.stringify(error.message);
-    } catch { }
+    } catch(e) {
+      console.error(e);
+    }
 
     // Creating the log parcel
     return {clientHttpError, clientHttpStatus: error.status};

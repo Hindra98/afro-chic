@@ -1,0 +1,16 @@
+@use '../common.scss';
+
+.file-input label {
+  background-color: common.$primary-color-pl;
+  border-radius: 8px;
+
+  &:hover {
+    color: #fff;
+    background-color: common.$primary-color;
+  }
+
+  .text-file {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+}

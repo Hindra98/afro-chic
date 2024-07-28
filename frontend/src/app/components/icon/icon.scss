@@ -1,0 +1,26 @@
+@import "app/styles/theme";
+
+.app-icon {
+    $default-size: 16px;
+    display: inline-block;
+    pointer-events: none;
+    position: relative;
+    width: $default-size;
+    height: $default-size;
+    flex-shrink: 0;
+    svg {
+        position: relative;
+        flex-shrink: 0;
+        margin: 0 0 -8% 0;
+        cursor: pointer;
+
+        path,
+        circle,
+        line,
+        polygon,
+        polyline,
+        rect {
+            @include theme-aware("stroke", "color-accent1-700", "", "!important");
+        }
+    }
+}

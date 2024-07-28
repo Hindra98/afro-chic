@@ -1,0 +1,236 @@
+@use 'common';
+
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+header {
+  background-color: #ccc !important;
+  color: #000 !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 100 !important;
+  height: 50px !important;
+}
+
+header .e-appbar-separator {
+  border-left-color: common.$primary-color !important;
+}
+
+header .e-btn {
+  margin: 0 1px !important;
+}
+
+#logout,
+#logout .e-menu-icon,
+#logouts,
+#logouts .e-menu-icon {
+  color: red !important;
+}
+
+.color-appbar-section .e-dropdown-btn.e-inherit,
+.color-appbar-section .e-btn.e-inherit.home {
+  margin: 0 5px;
+}
+
+.color-appbar-section .e-appbar-icon-menu {
+  display: none;
+}
+
+
+.color-appbar-section .e-appbar .e-appbar-separator {
+  margin: 0 10px;
+}
+
+.e-dropdown-popup ul {
+  min-width: max-content !important;
+  width: auto;
+  max-width: max-content !important;
+}
+
+div.e-appbar-icon-menu.e-menu-popup {
+  background-color: #ddd !important;
+
+  ul {
+    background-color: #ddd !important;
+    padding: 15px 0px !important;
+
+    >li:not(.e-menu-caret-icon) {
+      margin: 3px 10px !important;
+    }
+  }
+
+  ul:has(li#user) {
+    padding: 5px 0px !important;
+  }
+}
+
+div.e-appbar-menu {
+  margin-top: 15px !important;
+  margin-left: -10px !important;
+  background-color: #ddd !important;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 20px 1px #aaa !important;
+}
+
+div.e-appbar-menu ul {
+  padding: 15px 10px !important;
+
+  >li {
+    margin-top: 5px !important;
+  }
+}
+
+
+div.e-appbar-menu ul li.e-item:hover,
+div.e-appbar-icon-menu.e-menu-popup ul li.e-menu-item:hover {
+  background-color: common.$primary-color !important;
+  border-radius: 5px !important;
+  color: #fff !important;
+
+  .e-menu-icon {
+    color: #fff !important;
+  }
+
+  a {
+    color: #fff !important;
+  }
+}
+
+.e-appbar-menu ul li.e-item.e-url:nth-child(4),
+.e-appbar-icon-menu.e-menu-popup ul li.e-menu-item.e-navigable:nth-child(4),
+.e-appbar-menu ul li.e-item.e-url:nth-child(2n+1),
+.e-appbar-icon-menu.e-menu-popup ul li.e-menu-item.e-navigable:nth-child(2n+1) {
+  color: inherit !important;
+  background-color: #fff;
+  border-radius: 5px !important;
+}
+
+
+.e-appbar-menu ul li.e-item.e-url,
+.e-appbar-icon-menu.e-menu-popup ul li.e-menu-item.e-navigable {
+  a {
+    color: #000 !important;
+  }
+}
+
+li.e-item.e-separator,
+li.e-menu-item.e-separator {
+  border-bottom: 2px solid #fff !important;
+  margin: 6px 0 3px !important;
+}
+
+
+.e-menu-wrapper.e-inherit.e-appbar-icon-menu,
+.e-menu-wrapper.e-inherit.e-appbar-icon-menu:hover,
+.e-menu-wrapper.e-inherit.e-appbar-icon-menu:first-child ul,
+.e-menu-wrapper.e-inherit.e-appbar-icon-menu:first-child ul:hover,
+.e-menu-wrapper.e-inherit.e-appbar-icon-menu ul.e-control,
+.e-menu-wrapper.e-inherit.e-appbar-icon-menu ul.e-control:hover {
+  background-color: inherit !important;
+  color: #000 !important;
+}
+
+.e-menu-wrapper.e-inherit.e-appbar-icon-menu .e-menu {
+  font-size: 30px !important;
+  font-weight: 600 !important;
+  color: #000 !important;
+}
+
+@media screen and (max-width: 768px) {
+
+  .color-appbar-section .e-appbar-icon-menu,
+  .e-inherit.logo.e-appbar-menu {
+    display: block !important;
+  }
+
+  .color-appbar-section .login,
+  .color-appbar-section .e-appbar-separator,
+  .color-appbar-section .e-dropdown-btn.e-inherit.e-appbar-menu,
+  .color-appbar-section .e-menu-wrapper.e-inherit.e-appbar-menu,
+  .color-appbar-section .e-menu-wrapper.e-inherit.e-appbar-icon-menu .e-menu .e-menu-item .e-caret,
+  .color-appbar-section .e-btn.e-inherit.e-appbar-menu,
+  div.search {
+    display: none;
+  }
+
+  .color-appbar-section .e-menu-wrapper.e-inherit.e-appbar-icon-menu ul .e-menu-item.e-menu-caret-icon {
+    padding: 0 8px;
+  }
+
+  .color-appbar-section .e-menu-wrapper.e-inherit ul .e-menu-item .e-menu-icon {
+    margin-right: 0;
+  }
+
+  .color-appbar-section .e-menu-wrapper.e-inherit {
+    margin: 0 10px;
+  }
+
+  .fabric .color-appbar-section .e-menu-wrapper.e-inherit ul.e-menu:not(.e-vertical),
+  .fabric-dark .color-appbar-section .e-menu-wrapper.e-inherit ul.e-menu:not(.e-vertical) {
+    padding: 0;
+  }
+
+  .color-appbar-section .e-input-group.e-control-wrapper.e-inherit {
+    margin-left: 10px;
+  }
+
+  .color-appbar-section .menu {
+    margin-bottom: 3px;
+  }
+
+  .color-appbar-section .color-appbar-container {
+    margin: 0 -15px;
+  }
+}
+
+
+.badge-block {
+  position: relative !important;
+  display: inline-block;
+
+  .badge-content {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    font-size: 10px !important;
+    text-align: center;
+    vertical-align: middle !important;
+    border-radius: 50%;
+    background-color: #f00;
+    color: #fff !important;
+    top: -5px !important;
+    left: 10px !important;
+    ;
+  }
+}
+
+#dialogModalNotifications {
+
+  margin-top: 50px !important;
+  margin-right: 50px !important;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 15px;
+  min-width: 450px !important;
+
+  .e-dlg-content {
+    padding: 0 !important;
+    border-radius: 15px;
+  }
+}
+
+#dialogModalNotifications .e-dlg-content::-webkit-scrollbar {
+  width: 0px !important;
+}
+
+#dialogModalNotifications .e-dlg-content::-webkit-scrollbar-track {
+  background-color: transparent !important;
+}
+
+#dialogModalNotifications .e-dlg-content::-webkit-scrollbar-thumb {
+  background-color: transparent !important;
+}

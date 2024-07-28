@@ -1,0 +1,35 @@
+@use '../common';
+
+button:not(.e-msg-close-icon) {
+    min-width: 75px !important;
+}
+
+button {
+  
+}
+
+button.cancelBtn {
+    background-color: grey !important;
+    color: #fff !important;
+    font-family: common.$font-lt;
+    &.disabled {
+        background-color: #808080a0 !important;
+    }
+}
+
+button.cancelBtn:hover {
+    background-color: #808080a0 !important;
+}
+
+button.okBtn {
+    background-color: common.$primary-color !important;
+    color: #fff !important;
+    font-family: common.$font-lt;
+    &.disabled {
+        background-color: common.$primary-color-pl !important;
+    }
+}
+
+button.okBtn:hover {
+    background-color: common.$primary-color-pl !important;
+}

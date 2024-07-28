@@ -27,7 +27,7 @@ export const GlobalAppContextProvider = ({ children, languages }) => {
   const rExpires: number|null = getStorage<number>("r_expires");
   const tExpires: number|null = getStorage<number>("t_expires");
 
-  let getUserClaim = useCallback(() =>{
+  const getUserClaim = useCallback(() =>{
     if(accessToken){
       return Jwt.getClaims(accessToken, ['name', 'contactmedia', 'nameidentifier', 'role', 'fullname', 'userlanguage', 'tenantid']);
     }

@@ -8,7 +8,7 @@ export const isAccessTokenExpired = (): boolean => {
     try{
         const accessToken: string = getStorage<string>(AuthenticationConstants.ACCESS_TOKEN);
         const decodedAccesstoken = jwtDecode(accessToken);
-            if(decodedAccesstoken.exp * 1000 < Date.now()){
+            if(decodedAccesstoken?.exp * 1000 < Date.now()){
                 result = true;
                 console.log("Token expired.");
             }

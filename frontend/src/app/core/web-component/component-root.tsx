@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import { ComponentContext } from '../startup/component-context';
 
 /**
@@ -55,6 +55,6 @@ export const ComponentRoot = (props: {
 
         //The webcomponent way
         : (props.dangerouslySetInnerHTML?.__html
-                ? <div ref={e => e.parentElement.innerHTML = props.dangerouslySetInnerHTML.__html} />
+                ? <div ref={e => e.parentElement.innerHTML = props?.dangerouslySetInnerHTML?.__html} />
                 : <>{props.children}</>);
 };

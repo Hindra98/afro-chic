@@ -1,6 +1,6 @@
 import { createContext, useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { setStorage, getStorage } from "../storage/storage";
+import { getStorage } from "../storage/storage";
 import { AuthenticationConstants } from "../constants/authentication-contants";
 
 export type GlobalContent = {
@@ -16,7 +16,6 @@ const AuthContext = createContext<GlobalContent>({
 export const AuthenticationProvider = ({ children, languages }) => {
 
   const [accessToken, setAccessToken] = useState(getStorage<string>(AuthenticationConstants.ACCESS_TOKEN));
-  //const accessToken = getStorage<string>(AuthenticationConstants.ACCESS_TOKEN);
   const navigate = useNavigate();
 
   // const login = async (data) => {
