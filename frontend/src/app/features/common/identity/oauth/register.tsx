@@ -6,33 +6,30 @@ import { Link, Navigate } from "react-router-dom";
 import appStore from "../../../../assets/appstore.png";
 import HelpText from "./help-text";
 import { isEmail } from "../../../../core/text/regex";
-import { useLocalizer } from "../../../../core/Localization";
-import { getStorage } from "../../../../core/storage/storage";
 import "../../../../styles/login.scss";
-import { AuthenticationConstants } from "../../../../core/constants/authentication-contants";
+import { useTranslation } from "react-i18next";
+import { useAppDispatch, useAppSelector } from "../../../../core/hooks/core-hooks";
+import { register } from "../../../../store-management/actions/oauth/oauth-actions";
 
 const Register = () => {
-  const commonLocalizer = useLocalizer("Common-ResCommon");
-  const token = getStorage<string>(AuthenticationConstants.ACCESS_TOKEN);
+  const { t } = useTranslation();
+  
+  const userConnected = useAppSelector(state=> state.getUser);
+  const registerState = useAppSelector(state=> state.registerUser)
+  const dispatch = useAppDispatch()
 
   const schema = Yup.object().shape({
-    firstname: Yup.string(),
-    lastname: Yup.string(),
     email: Yup.string(),
     password: Yup.string(),
     passwordRepeat: Yup.string(),
   });
 
   const [registerViewModel, setLoginViewModel] = useState({
-    firstname: "",
-    lastname: "",
     email: "",
     password: "",
     passwordRepeat: "",
   });
   const [errors, setErrors] = useState({
-    firstname: "",
-    lastname: "",
     email: "",
     password: "",
     passwordRepeat: "",
@@ -51,8 +48,6 @@ const Register = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrors({
-      firstname: "",
-      lastname: "",
       password: "",
       passwordRepeat: "",
       email: "",
@@ -64,65 +59,51 @@ const Register = () => {
     if (
       values.password === "" ||
       values.password !== values.passwordRepeat ||
-      values.firstname === "" ||
-      values.lastname === "" ||
       !isEmail(values.email as string) ||
       (values.password as string).length < 8
     ) {
       let password = "",
         passwordRepeat = "",
-        email = "",
-        lastname = "",
-        firstname = "";
+        email = "";
       if (values.password === "")
-        password = commonLocalizer(
+        password = t(
           "MODULES_Common_User_Validate_Command_Password_Required"
         );
-      if (values.firstname === "")
-        firstname = commonLocalizer(
-          "MODULE_COMMON_EDIT_PROFILE_FIRSTNAME_IS_REQUIRED"
-        );
-      if (values.lastname === "")
-        lastname = commonLocalizer(
-          "MODULE_COMMON_EDIT_PROFILE_LASTNAME_IS_REQUIRED"
-        );
       if ((values.password as string).length < 8)
-        password = commonLocalizer(
+        password = t(
           "MODULES_Common_User_Validate_Command_Password_Minimum_Length"
         );
       if (!isEmail(values.email as string))
-        email = commonLocalizer(
+        email = t(
           "MODULE_COMMON_EDIT_PROFILE_THIS_EMAIl_IS_NOT_VALID"
         );
       if (values.email === "")
-        email = commonLocalizer(
+        email = t(
           "MODULES_Common_User_Validate_Command_Email_Required"
         );
       if (values.password !== values.passwordRepeat)
-        passwordRepeat = commonLocalizer(
+        passwordRepeat = t(
           "MODULES_Common_User_Validate_Command_Password_No_Match"
         );
 
       setErrors({
         ...errors,
-        firstname: firstname,
-        lastname: lastname,
         password: password,
         email: email,
         passwordRepeat: passwordRepeat,
       });
     } else {
       console.log("Login data: ", registerViewModel);
+      dispatch(register({email: registerViewModel.email, password:registerViewModel.password} as RegisterCommand))
+      // registerWithEmailAndPassword(registerViewModel.email, registerViewModel.password);
     }
   };
 
-  if (token) {
-    return <Navigate to={"/dashboard"} replace />;
+  if (userConnected.user !== null) {
+    return <Navigate to={"/home"} replace />;
   }
 
-  window.document.title = commonLocalizer(
-    "MODULE_COMMON_AUTHENTICATION_SCREEN_REGISTER"
-  );
+  window.document.title = t("MODULE_COMMON_AUTHENTICATION_SCREEN_REGISTER");
 
   return (
     <section className="min-h-full">
@@ -145,13 +126,13 @@ const Register = () => {
               </Link>
 
               <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-                {commonLocalizer(
+                {t(
                   "MODULE_COMMON_AUTHENTICATION_SCREEN_LOGIN_TITLE"
                 )}
               </h1>
 
               <p className="mt-4 leading-relaxed text-gray-500">
-                {commonLocalizer(
+                {t(
                   "MODULE_COMMON_AUTHENTICATION_SCREEN_LOGIN_HELP_TEXT"
                 )}{" "}
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -164,59 +145,13 @@ const Register = () => {
               className="mt-8 grid grid-cols-6 gap-6 form-login"
               onSubmit={handleSubmit}
             >
-              <div className="col-span-6 md:col-span-3">
-                <label
-                  htmlFor="firstname"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  {commonLocalizer("MODULE_COMMON_GET_PROFILE_FIRSTNAME")}
-                </label>
-                <InputWithIcon
-                  type={"text"}
-                  name={"firstname"}
-                  id={"firstname"}
-                  value={registerViewModel.firstname}
-                  icon="user-8icon-"
-                  placeholder={commonLocalizer(
-                    "MODULE_COMMON_GET_PROFILE_FIRSTNAME"
-                  )}
-                  onChange={handleChange}
-                />
-                {errors.firstname && (
-                  <div className="error">{errors.firstname.toString()}</div>
-                )}
-              </div>
-
-              <div className="col-span-6 md:col-span-3">
-                <label
-                  htmlFor="lastname"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  {commonLocalizer("MODULE_COMMON_GET_PROFILE_NAMES")}
-                </label>
-
-                <InputWithIcon
-                  type={"text"}
-                  name={"lastname"}
-                  id={"lastname"}
-                  value={registerViewModel.lastname}
-                  icon="user-8icon-"
-                  placeholder={commonLocalizer(
-                    "MODULE_COMMON_GET_PROFILE_NAMES"
-                  )}
-                  onChange={handleChange}
-                />
-                {errors.lastname && (
-                  <div className="error">{errors.lastname.toString()}</div>
-                )}
-              </div>
 
               <div className="col-span-6">
                 <label
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  {commonLocalizer(
+                  {t(
                     "MODULE_COMMON_AUTHENTICATION_SCREEN_EMAIL_ADDRESS"
                   )}
                 </label>
@@ -226,7 +161,7 @@ const Register = () => {
                   id={"email"}
                   value={registerViewModel.email}
                   icon="mail-alticon-"
-                  placeholder={commonLocalizer(
+                  placeholder={t(
                     "MODULE_COMMON_AUTHENTICATION_SCREEN_EMAIL_ADDRESS_PLACEHOLDER"
                   )}
                   onChange={handleChange}
@@ -241,7 +176,7 @@ const Register = () => {
                   htmlFor="password"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  {commonLocalizer(
+                  {t(
                     "MODULE_COMMON_AUTHENTICATION_SCREEN_PASSWORD"
                   )}
                 </label>
@@ -251,7 +186,7 @@ const Register = () => {
                   id={"password"}
                   value={registerViewModel.password}
                   icon="lock-1icon-"
-                  placeholder={commonLocalizer(
+                  placeholder={t(
                     "MODULE_COMMON_AUTHENTICATION_SCREEN_PASSWORD_PLACEHOLDER"
                   )}
                   onChange={handleChange}
@@ -296,7 +231,7 @@ const Register = () => {
                   />
 
                   <span className="text-sm text-gray-700">
-                    {commonLocalizer(
+                    {t(
                       "MODULE_COMMON_AUTHENTICATION_SCREEN_REGISTER_RECEIVE_MAILS"
                     )}
                   </span>
@@ -305,19 +240,19 @@ const Register = () => {
 
               <div className="col-span-6">
                 <p className="text-sm text-gray-500">
-                  {commonLocalizer(
+                  {t(
                     "MODULE_COMMON_AUTHENTICATION_SCREEN_REGISTER_TERMS_OF_USE_HELP"
                   )}{" "}
                   <Link to={""} className="text-gray-700 underline">
-                    {commonLocalizer(
+                    {t(
                       "MODULE_COMMON_AUTHENTICATION_SCREEN_REGISTER_TERMS_OF_USE"
                     )}
                   </Link>{" "}
-                  {commonLocalizer(
+                  {t(
                     "MODULE_COMMON_AUTHENTICATION_SCREEN_REGISTER_OF"
                   )}{" "}
                   <Link to={""} className="text-gray-700 underline">
-                    {commonLocalizer(
+                    {t(
                       "MODULE_COMMON_AUTHENTICATION_SCREEN_REGISTER_TERMS_OF_USE"
                     )}
                   </Link>
@@ -328,19 +263,20 @@ const Register = () => {
                 <Button
                   param={{
                     type: "submit",
-                    name: commonLocalizer(
+                    name: t(
                       "MODULE_COMMON_AUTHENTICATION_SCREEN_REGISTER_LINK"
                     ),
-                    css: "mx-auto register-btn shrink-0 rounded-md",
+                    css: (registerState.pending ? "disabled":"") +" mx-auto register-btn shrink-0 rounded-md",
+                    disabled: registerState.pending
                   }}
                 />
 
                 <p className="text-sm text-gray-500">
-                  {commonLocalizer(
+                  {t(
                     "MODULE_COMMON_AUTHENTICATION_SCREEN_HAS_ACCOUNT"
                   )}{" "}
                   <Link to={"/account/login"} className="text-gray-700 underline">
-                    {commonLocalizer(
+                    {t(
                       "MODULE_COMMON_AUTHENTICATION_SCREEN_LOGIN_LINK"
                     )}
                   </Link>

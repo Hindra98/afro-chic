@@ -1,19 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useState } from "react";
-import { useLocalizer } from "../../core/Localization";
+import { useState } from "react";
 import { useGlobalAppContext } from "../../core/hooks/use-app-context";
 import { getStorage, setStorage } from "../../core/storage/storage";
 import { AuthenticationConstants } from "../../core/constants/authentication-contants";
 import { getBrowserLanguage } from "../../core/Localization/browser-language";
 import { fallBackLanguage } from "../../core/Localization/base";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   className: string;
 };
 
 const LanguageSelector = ({ className }: Props) => {
+  const { i18n, t } = useTranslation();
 
-  const commonLocalizer = useLocalizer("Common-ResCommon");
 
   const { languages } = useGlobalAppContext();
 
@@ -46,34 +46,25 @@ const LanguageSelector = ({ className }: Props) => {
   const [currentLanguageIndex, setCurrentLanguageIndex] = useState(userLanguageIndex);
   const [selectedLanguage, setSelectedLanguage] = useState(appLanguages[userLanguageIndex]?.displayName);
 
-  const refreshPage = () => {
-    window.location.reload();
-  }
-
-  const reload = useCallback(() => refreshPage(), [refreshPage]);
 
   const selectLanguage = (language: Language) => {
+    i18n.changeLanguage(language.id);
     
     setSelectedLanguage(language.displayName);
     setCurrentLanguageIndex(getLanguageIndex(language.id));
     setToggleActive(false);
 
     setStorage(AuthenticationConstants.USER_LANGUAGE, language.id);
-
-    const token = setTimeout(() => reload(), 1000);
-    return () => clearTimeout(token);
-
   };
 
   return (
-    <>
       <div className={className}>
         <div
           className={ toggleActive ? "language-select px-1 active" : "language-select px-1" }
           id="language-select"
         >
           <button
-            title={commonLocalizer("MODULES_COMMON_AUTHENTICATION_CHANGE_LANGUAGE")}
+            title={t("MODULES_COMMON_AUTHENTICATION_CHANGE_LANGUAGE")}
             className="select-button"
             type="button"
             id="select-button"
@@ -104,7 +95,6 @@ const LanguageSelector = ({ className }: Props) => {
           </button>
         </div>
       </div>
-    </>
   );
 };
 

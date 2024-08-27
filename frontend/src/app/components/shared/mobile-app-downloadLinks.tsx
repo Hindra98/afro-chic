@@ -1,14 +1,14 @@
 import playstore from "../../assets/googleplay.png";
 import appstore from "../../assets/appstore.png";
 import ImageLink from "./image-link";
-import { useLocalizer } from "../../core/Localization";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   cssClassList: string;
 }
 
 const MobileAppDownloadlinks = (props: Props) => {
-  const commonLocalizer = useLocalizer("Common-ResCommon");
+  const { t } = useTranslation();
   return (
     <div className={props.cssClassList}>
       <div className="playstore">
@@ -16,7 +16,7 @@ const MobileAppDownloadlinks = (props: Props) => {
           to={"/playstore"}
           src={playstore}
           alt="Google Play Store"
-          title={commonLocalizer(
+          title={t(
             "MODULES_COMMON_Authentication_Download_Our_App_On_PlayStore"
           )}
           className="w-36"
@@ -27,7 +27,7 @@ const MobileAppDownloadlinks = (props: Props) => {
           to={"/appstore"}
           src={appstore}
           alt="App Store"
-          title={commonLocalizer(
+          title={t(
             "MODULES_COMMON_Authentication_Download_Our_App_On_AppStore"
           )}
           className="w-36"

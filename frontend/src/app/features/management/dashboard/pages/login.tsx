@@ -3,15 +3,15 @@ import * as Yup from "yup";
 
 import ImageLight from "../../../../assets/images/admin/auth/login-office.jpeg";
 import ImageDark from "../../../../assets/images/admin/auth/login-office-dark.jpeg";
-import { useLocalizer } from "../../../../core/Localization";
 import InputWithIcon from "../../../../components/form/Input";
 import { isEmail } from "../../../../core/text/regex";
 import { useState } from "react";
 import Button from "../../../../components/form/Button";
 import { GithubIcon, TwitterIcon } from "../../../../assets/icones";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
-  const commonLocalizer = useLocalizer("Common-ResCommon");
+  const { t } = useTranslation();
 
   const schema = Yup.object().shape({
     email: Yup.string(),
@@ -52,15 +52,15 @@ const Login = () => {
       let password = "",
         email = "";
       if (values.password === "")
-        password = commonLocalizer(
+        password = t(
           "MODULES_Common_User_Validate_Command_Password_Required"
         );
       if (!isEmail(values.email as string))
-        email = commonLocalizer(
+        email = t(
           "MODULE_COMMON_EDIT_PROFILE_THIS_EMAIl_IS_NOT_VALID"
         );
       if (values.email === "")
-        email = commonLocalizer(
+        email = t(
           "MODULES_Common_User_Validate_Command_Email_Required"
         );
 
@@ -100,7 +100,7 @@ const Login = () => {
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    {commonLocalizer(
+                    {t(
                       "MODULE_COMMON_AUTHENTICATION_SCREEN_EMAIL_ADDRESS"
                     )}
                   </label>
@@ -112,7 +112,7 @@ const Login = () => {
                     className="mt-1"
                     value={loginViewModel.email}
                     icon="mail-alticon-"
-                    placeholder={commonLocalizer(
+                    placeholder={t(
                       "MODULE_COMMON_AUTHENTICATION_SCREEN_EMAIL_ADDRESS_PLACEHOLDER"
                     )}
                     onChange={handleChange}
@@ -127,7 +127,7 @@ const Login = () => {
                     htmlFor="password"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    {commonLocalizer(
+                    {t(
                       "MODULE_COMMON_AUTHENTICATION_SCREEN_PASSWORD"
                     )}
                   </label>
@@ -139,7 +139,7 @@ const Login = () => {
                     className="mt-1"
                     value={loginViewModel.password}
                     icon="icon lock-1icon-"
-                    placeholder={commonLocalizer(
+                    placeholder={t(
                       "MODULE_COMMON_AUTHENTICATION_SCREEN_PASSWORD_PLACEHOLDER"
                     )}
                     onChange={handleChange}
@@ -153,7 +153,7 @@ const Login = () => {
                 <Button
                   param={{
                     type: "submit",
-                    name: commonLocalizer(
+                    name: t(
                       "MODULE_COMMON_AUTHENTICATION_SCREEN_SIGNIN"
                     ),
                     css: "mx-auto text-center shrink-0 rounded-md w-full okBtn my-4",
@@ -196,7 +196,7 @@ const Login = () => {
                   className="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
                   to="../forgot-password"
                 >
-                  {commonLocalizer(
+                  {t(
                     "MODULE_COMMON_AUTHENTICATION_SCREEN_I_FORGOT_MY_PASSWORD"
                   )}
                 </Link>

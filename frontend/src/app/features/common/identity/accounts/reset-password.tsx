@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import { useState } from "react";
 import { MessageComponent } from "@syncfusion/ej2-react-notifications";
 import { Navigate, useLocation } from "react-router-dom";
-import { useLocalizer } from "../../../../core/Localization";
 import { getStorage } from "../../../../core/storage/storage";
 import { useAppDispatch, useAppSelector } from "../../../../core/hooks/core-hooks";
 import { extractParamsUrl } from "../../../../core/text/regex";
@@ -13,10 +12,11 @@ import { resetPassword } from "../../../../store-management/actions/accounts/acc
 import Text from "../../../../components/form/Text";
 import Button from "../../../../components/form/Button";
 import OperationResultComponent from "../../../../components/shared/operation-result-component";
+import { useTranslation } from "react-i18next";
 
 const ResetPassword = () => {
   
-  const commonLocalizer = useLocalizer("Common-ResCommon");
+  const { t } = useTranslation();
   const token = getStorage<string>(AuthenticationConstants.ACCESS_TOKEN);
   const dispatch = useAppDispatch();
   const resetPasswordState = useAppSelector((state) => state.resetPassword);
@@ -57,8 +57,8 @@ const ResetPassword = () => {
 
     if (values.password === "" || values.passwordConfirmation !== values.password) {
       let password = "", passwordConfirmation = "";
-      if (values.password === "") password = commonLocalizer("MODULES_Common_User_Validate_Command_Password_Required");
-      if (values.passwordConfirmation !== values.password) passwordConfirmation = commonLocalizer("MODULES_Common_User_Validate_Command_Password_No_Match");
+      if (values.password === "") password = t("MODULES_Common_User_Validate_Command_Password_Required");
+      if (values.passwordConfirmation !== values.password) passwordConfirmation = t("MODULES_Common_User_Validate_Command_Password_No_Match");
 
       setErrors({
         passwordConfirmation: passwordConfirmation,
@@ -72,18 +72,18 @@ const ResetPassword = () => {
     return <Navigate to={"/dashboard"} replace />
   }
   
-  window.document.title = commonLocalizer("MODULE_COMMON_RESET_PASSWORD_SCREEN_TITLE");
+  window.document.title = t("MODULE_COMMON_RESET_PASSWORD_SCREEN_TITLE");
 
   return (
     <>
         { (resetPasswordState.value.message && resetPasswordState.value.message.length > 0 && resetPasswordState.Errors.length === 0) ? (
           <div className="form-login bg-transparent rounded-xl h-full min-h-[200px] xl:w-1/4 lg:w-1/3 xl:px-12 xmd:w-2/5 xmd:px-8 md:w-1/2 sm:w-3/5 sm:px-5 xxs:w-5/6">
-            <OperationResultComponent message={resetPasswordState.value.message} title={commonLocalizer("MODULES_COMMON_Authentication_Passord_Reset_Successful")} titleButton={commonLocalizer("MODULES_COMMON_Authentication_Passord_Reset_Go_To_Login_Page")} linkButton="/" />
+            <OperationResultComponent message={resetPasswordState.value.message} title={t("MODULES_COMMON_Authentication_Passord_Reset_Successful")} titleButton={t("MODULES_COMMON_Authentication_Passord_Reset_Go_To_Login_Page")} linkButton="/" />
           </div>
         ) : (
           <div  className="form-login bg-white rounded-xl py-4 h-full min-h-[300px] xl:w-1/4 lg:w-1/3 xl:px-12 xmd:w-2/5 xmd:px-8 md:w-1/2 sm:w-3/5 sm:px-5 xxs:w-5/6">
             <h1 className="text-3xl align-top text-center my-4 py-2">
-              {commonLocalizer("MODULE_COMMON_RESET_PASSWORD_SCREEN_TITLE")}
+              {t("MODULE_COMMON_RESET_PASSWORD_SCREEN_TITLE")}
             </h1>
 
             {resetPasswordState.Errors && resetPasswordState.Errors.length > 0 && resetPasswordState.value.message.length === 0 && (
@@ -103,7 +103,7 @@ const ResetPassword = () => {
                   id="password"
                   name="password"
                   icon={"e-lock"}
-                  placeholder={commonLocalizer("MODULE_COMMON_RESET_PASSWORD_SCREEN_NEW_PASSWORD")}
+                  placeholder={t("MODULE_COMMON_RESET_PASSWORD_SCREEN_NEW_PASSWORD")}
                   className="login-input w-full outline-none border-none"
                   value={resetPasswordViewModel.password}
                   onChange={handleChange}
@@ -117,7 +117,7 @@ const ResetPassword = () => {
                   id="passwordConfirmation"
                   name="passwordConfirmation"
                   icon={"e-lock"}
-                  placeholder={commonLocalizer("MODULE_COMMON_RESET_PASSWORD_SCREEN_CONFIRM_NEW_PASSWORD")}
+                  placeholder={t("MODULE_COMMON_RESET_PASSWORD_SCREEN_CONFIRM_NEW_PASSWORD")}
                   className="login-input w-full outline-none border-none"
                   value={resetPasswordViewModel.passwordConfirmation}
                   onChange={handleChange}
@@ -127,10 +127,10 @@ const ResetPassword = () => {
               </div>
 
               <div className="text-center my-3">
-                {commonLocalizer("MODULE_COMMON_RESET_PASSWORD_SCREEN_YOU_WILL_RECEIVED_AN_EMAIL")}.
+                {t("MODULE_COMMON_RESET_PASSWORD_SCREEN_YOU_WILL_RECEIVED_AN_EMAIL")}.
               </div>
 
-              <Button param={{type: "submit", css: (resetPasswordState.pending?"disabled":"")+" px-5 py-3 rounded-md mx-auto  w-full", name: commonLocalizer("MODULE_COMMON_RESET_PASSWORD_SCREEN_SEND"), disabled: resetPasswordState.pending}} />
+              <Button param={{type: "submit", css: (resetPasswordState.pending?"disabled":"")+" px-5 py-3 rounded-md mx-auto  w-full", name: t("MODULE_COMMON_RESET_PASSWORD_SCREEN_SEND"), disabled: resetPasswordState.pending}} />
                 
             </form>
           </div>

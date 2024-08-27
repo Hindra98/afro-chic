@@ -2,14 +2,14 @@ import * as Yup from "yup";
 
 import ImageLight from "../../../../assets/images/admin/auth/login-office.jpeg";
 import ImageDark from "../../../../assets/images/admin/auth/login-office-dark.jpeg";
-import { useLocalizer } from "../../../../core/Localization";
 import InputWithIcon from "../../../../components/form/Input";
 import { isEmail } from "../../../../core/text/regex";
 import { useState } from "react";
 import Button from "../../../../components/form/Button";
+import { useTranslation } from "react-i18next";
 
 const ForgotPassword = () => {
-  const commonLocalizer = useLocalizer("Common-ResCommon");
+  const { t } = useTranslation();
 
   const schema = Yup.object().shape({
     email: Yup.string(),
@@ -42,11 +42,11 @@ const ForgotPassword = () => {
     if (!isEmail(values.email as string) || values.email === "") {
       let email = "";
       if (!isEmail(values.email as string))
-        email = commonLocalizer(
+        email = t(
           "MODULE_COMMON_EDIT_PROFILE_THIS_EMAIl_IS_NOT_VALID"
         );
       if (values.email === "")
-        email = commonLocalizer(
+        email = t(
           "MODULES_Common_User_Validate_Command_Email_Required"
         );
 
@@ -86,7 +86,7 @@ const ForgotPassword = () => {
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    {commonLocalizer(
+                    {t(
                       "MODULE_COMMON_AUTHENTICATION_SCREEN_EMAIL_ADDRESS"
                     )}
                   </label>
@@ -98,7 +98,7 @@ const ForgotPassword = () => {
                     className="mt-1"
                     value={loginViewModel.email}
                     icon="mail-alticon-"
-                    placeholder={commonLocalizer(
+                    placeholder={t(
                       "MODULE_COMMON_AUTHENTICATION_SCREEN_EMAIL_ADDRESS_PLACEHOLDER"
                     )}
                     onChange={handleChange}

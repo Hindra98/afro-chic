@@ -1,19 +1,11 @@
 import { useContext, useState } from 'react'
 import { SidebarContext } from '../context/sidebar'
 import {
-  SearchIcon,
-  MoonIcon,
-  SunIcon,
   BellIcon,
   MenuIcon,
-  OutlinePersonIcon,
-  OutlineCogIcon,
-  OutlineLogoutIcon,
 } from '../../../../assets/icones'
-import { Avatar, Badge, Input, Dropdown, DropdownItem, WindmillContext } from '@windmill/react-ui'
 
 const Header = () => {
-  const { mode, toggleMode } = useContext(WindmillContext)
   const { toggleSidebar } = useContext(SidebarContext)
 
   const [isNotificationsMenuOpen, setIsNotificationsMenuOpen] = useState(false)
@@ -39,32 +31,13 @@ const Header = () => {
         >
           <MenuIcon className="w-6 h-6" aria-hidden="true" />
         </button>
-        {/* <!-- Search input --> */}
-        <div className="flex justify-center flex-1 lg:mr-32">
-          <div className="relative w-full max-w-xl mr-6 focus-within:text-purple-500">
-            <div className="absolute inset-y-0 flex items-center pl-2">
-              <SearchIcon className="w-4 h-4" aria-hidden="true" />
-            </div>
-            <Input
-              className="pl-8 text-gray-700"
-              placeholder="Search for projects"
-              aria-label="Search"
-            />
-          </div>
-        </div>
         <ul className="flex items-center flex-shrink-0 space-x-6">
           {/* <!-- Theme toggler --> */}
           <li className="flex">
             <button
               className="rounded-md focus:outline-none focus:shadow-outline-purple"
-              onClick={toggleMode}
               aria-label="Toggle color mode"
             >
-              {mode === 'dark' ? (
-                <SunIcon className="w-5 h-5" aria-hidden="true" />
-              ) : (
-                <MoonIcon className="w-5 h-5" aria-hidden="true" />
-              )}
             </button>
           </li>
           {/* <!-- Notifications menu --> */}
@@ -83,23 +56,6 @@ const Header = () => {
               ></span>
             </button>
 
-            <Dropdown
-              align="right"
-              isOpen={isNotificationsMenuOpen}
-              onClose={() => setIsNotificationsMenuOpen(false)}
-            >
-              <DropdownItem tag="a" href="#" className="justify-between">
-                <span>Messages</span>
-                <Badge type="danger">13</Badge>
-              </DropdownItem>
-              <DropdownItem tag="a" href="#" className="justify-between">
-                <span>Sales</span>
-                <Badge type="danger">2</Badge>
-              </DropdownItem>
-              <DropdownItem onClick={() => alert('Alerts!')}>
-                <span>Alerts</span>
-              </DropdownItem>
-            </Dropdown>
           </li>
           {/* <!-- Profile menu --> */}
           <li className="relative">
@@ -108,32 +64,8 @@ const Header = () => {
               onClick={handleProfileClick}
               aria-label="Account"
               aria-haspopup="true"
-            >
-              <Avatar
-                className="align-middle"
-                src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
-                alt=""
-                aria-hidden="true"
-              />
+            >nooo
             </button>
-            <Dropdown
-              align="right"
-              isOpen={isProfileMenuOpen}
-              onClose={() => setIsProfileMenuOpen(false)}
-            >
-              <DropdownItem tag="a" href="#">
-                <OutlinePersonIcon className="w-4 h-4 mr-3" aria-hidden="true" />
-                <span>Profile</span>
-              </DropdownItem>
-              <DropdownItem tag="a" href="#">
-                <OutlineCogIcon className="w-4 h-4 mr-3" aria-hidden="true" />
-                <span>Settings</span>
-              </DropdownItem>
-              <DropdownItem onClick={() => alert('Log out!')}>
-                <OutlineLogoutIcon className="w-4 h-4 mr-3" aria-hidden="true" />
-                <span>Log out</span>
-              </DropdownItem>
-            </Dropdown>
           </li>
         </ul>
       </div>

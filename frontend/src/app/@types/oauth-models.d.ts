@@ -105,6 +105,12 @@ interface setAuthenticatedUserAction {
     type: any
 }
 
+interface RegisterCommand {
+    
+    email: string;
+    password: string;
+}
+
 interface VerifyIdentityCommand {
     
     pin: string;

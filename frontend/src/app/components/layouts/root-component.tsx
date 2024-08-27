@@ -2,6 +2,9 @@ import { useLoaderData, useOutlet } from "react-router-dom"
 import { GlobalAppContextProvider } from "../../core/hooks/use-app-context";
 import Header from "../shared/header";
 import Footer from "../form/footer";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export const RootComponent = () => {
     const outlet = useOutlet();
@@ -15,6 +18,7 @@ export const RootComponent = () => {
           {outlet}
           <Footer />
         </div>
+        <ToastContainer />
       </div>
         </GlobalAppContextProvider>
     </>)

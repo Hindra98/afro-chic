@@ -1,12 +1,13 @@
 import { banner, coco3, coco5, ensemble, pull, vetement } from "../../../../assets/images";
 import { Link } from "react-router-dom";
+import Slider from 'react-slick';
 
 import {
   DeliveryVanIcon,
   MoneyBackIcon,
   ServiceHoursIcon,
 } from "../../../../assets/icones";
-import { CarouselComponent } from "@syncfusion/ej2-react-navigations";
+import { useTranslation } from "react-i18next";
 
 type Slide = {
   Subtext?: string;
@@ -53,29 +54,29 @@ const CustomSlide = ({
   </section>
 );
 
-const previousButtonTemplate = (props: any) => {
+const NextArrow = (props: any) => {
+  const { className, onClick } = props;
   return (
     <div
-      className="bg-primary rounded-full pt-[3px] m-0 text-center align-middle block w-6 h-6 cursor-pointer hover:opacity-55"
-      title={props.type}
-    >
-      <span className="text-secondary icon left-openicon- text-[12px]"></span>
-    </div>
+      className={`${className} me-12`}
+      onClick={onClick}
+    />
   );
-};
+}
 
-const nextButtonTemplate = (props: any) => {
+const PrevArrow = (props: any) => {
+  const { className, onClick } = props;
   return (
     <div
-      className="bg-primary rounded-full pt-[3px] m-0 text-center align-middle block w-6 h-6 cursor-pointer hover:opacity-55"
-      title={props.type}
-    >
-      <span className="text-secondary icon right-openicon- text-[12px]"></span>
-    </div>
+      className={`${className} ms-12`}
+      onClick={onClick}
+    />
   );
-};
+}
+
 
 const Banner = () => {
+  const { t } = useTranslation();
   const slides = [
     {
       imgSrc: pull,
@@ -126,16 +127,24 @@ const Banner = () => {
       buttonText: "Contact-us",
     },
   ];
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />
+  };
+
   return (
     <div className=" w-full">
       <div className="w-full bg-transparent">
-        <CarouselComponent
-          dataSource={slides}
-          itemTemplate={CustomSlide}
-          previousButtonTemplate={previousButtonTemplate}
-          nextButtonTemplate={nextButtonTemplate}
-          indicatorsType="Default"
-        ></CarouselComponent>
+      <Slider {...settings}>
+        {slides.map(slide=><CustomSlide {...slide}/>)}
+    </Slider>
       </div>
 
       <div className="container py-16 mx-auto">
@@ -146,8 +155,8 @@ const Banner = () => {
               aria-hidden="true"
             />
             <div>
-              <h4 className="font-medium capitalize text-lg">Free Shipping</h4>
-              <p className="text-gray-500 text-sm">Order over $200</p>
+              <h4 className="font-medium capitalize text-lg">{t("MODULE_COMMON_BANNER_FREE_SHIPPING")}</h4>
+              <p className="text-gray-500 text-sm">{t("MODULE_COMMON_BANNER_ORDER")}</p>
             </div>
           </div>
           <div className="border border-primary rounded-sm px-3 py-6 flex justify-center items-center gap-5">
@@ -156,19 +165,18 @@ const Banner = () => {
               aria-hidden="true"
             />
             <div>
-              <h4 className="font-medium capitalize text-lg">Money Returns</h4>
-              <p className="text-gray-500 text-sm">30 days money returns</p>
+              <h4 className="font-medium capitalize text-lg">{t("MODULE_COMMON_BANNER_MONEY_RETURNS")}</h4>
+              <p className="text-gray-500 text-sm">{t("MODULE_COMMON_BANNER_THIRTY_DAY")}</p>
             </div>
           </div>
-
           <div className="border border-primary rounded-sm px-3 py-6 flex justify-center items-center gap-5">
             <ServiceHoursIcon
               className="w-12 h-12 object-contain"
               aria-hidden="true"
             />
             <div>
-              <h4 className="font-medium capitalize text-lg">24/7 Support</h4>
-              <p className="text-gray-500 text-sm">Customer support</p>
+              <h4 className="font-medium capitalize text-lg">{t("MODULE_COMMON_BANNER_SUPPORT")}</h4>
+              <p className="text-gray-500 text-sm">{t("MODULE_COMMON_BANNER_CUSTOMER_SUPPORT")}</p>
             </div>
           </div>
         </div>

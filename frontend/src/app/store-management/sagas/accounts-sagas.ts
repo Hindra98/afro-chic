@@ -2,7 +2,6 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import { ActionTypes } from "../actions/constants/action-types";
 import { ChangeEmailAction, ChangeEmailFailurePayload, ChangePasswordAction, ChangePasswordFailurePayload, ChangePhoneNumberAction, ChangePhoneNumberFailurePayload, ForgotPasswordAction, ForgotPasswordFailurePayload, SendPinCodeAction, SendPinCodeFailurePayload, ResetPasswordAction, ResetPasswordFailurePayload, VerifyNewContactMediaAction, VerifyNewContactMediaFailurePayload } from "../actions/accounts";
 import { changeEmail, changeEmailFailure, changeEmailSuccess, changePasswordFailure, changePasswordSuccess, changePhoneNumber, changePhoneNumberFailure, changePhoneNumberSuccess, forgotPasswordFailure, forgotPasswordSuccess, sendPinCodeFailure, sendPinCodeSuccess, resetPasswordFailure, resetPasswordSuccess, verifyNewContactMediaFailure, verifyNewContactMediaSuccess } from "../actions/accounts/accounts-actions";
-import { getMyProfile } from "../actions/myprofile/my-profil-actions";
 import { ControllerApi } from "../../features/common/identity/accounts/locale/controller-api";
 import { getStorage, setStorage } from "../../core/storage/storage";
 import { WasPinCodeSent } from "../../core/constants/common-constants";
@@ -184,7 +183,6 @@ function* changeEmailSaga(action: ChangeEmailAction) {
     const response = yield call(callApiToChangeEmail, action.payload.command);
     if (response) {
       if (response.hasSucceeded) {
-        yield put(getMyProfile(""));
         yield put(changeEmailSuccess(response.payload as ChangeEmailSuccessPayload));
       } else {
         let messages: string[] = [];
@@ -210,7 +208,6 @@ function* changePhoneNumberSaga(action: ChangePhoneNumberAction) {
     const response = yield call(callApiToChangePhoneNumber, action.payload.command);
     if (response) {
       if (response.hasSucceeded) {
-        yield put(getMyProfile(""));
         yield put(changePhoneNumberSuccess(response.payload as ChangePhoneNumberSuccessPayload));
       } else {
         let messages: string[] = [];

@@ -1,12 +1,12 @@
 
 import "../../../../styles/components/_dashboard.scss";
-import { useLocalizer } from "../../../../core/Localization";
 import ChartBlock from "../components/dashboard/dashboard-comp";
+import { useTranslation } from "react-i18next";
 
 const AdminDashboard = () => {
-  const commonLocalizer = useLocalizer("Common-ResCommon");
+  const { t } = useTranslation();
 
-  window.document.title = commonLocalizer("MODULE_COMMON_SIDEBAR_DASHBOARD");
+  window.document.title = t("MODULE_COMMON_SIDEBAR_DASHBOARD");
   return (
     <div className="h-full flex flex-col justify-start mx-auto dashboard px-2 w-full">
       <ChartBlock title="Utilisateurs">

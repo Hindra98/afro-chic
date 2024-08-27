@@ -1,5 +1,6 @@
 import { ActionTypes } from "../constants/action-types";
-import { AuthenticateUserAction, AuthenticateUserFailurePayload, SignOutAction, SignOutFailurePayload, VerifyPinCodeAction, VerifyPinCodeFailurePayload } from ".";
+import { AuthenticateUserAction, AuthenticateUserFailurePayload, RegisterAction, RegisterFailurePayload, SignOutAction, SignOutFailurePayload, VerifyPinCodeAction, VerifyPinCodeFailurePayload } from ".";
+import { User } from "firebase/auth";
 
 export const authenticateUser = (payload: AuthenticateUserCommand): AuthenticateUserAction => { 
     return {
@@ -118,10 +119,47 @@ export const signOutSuccess = (user: SignOutSuccessPayload): SignOutAction => {
     } as SignOutAction;
 }
 
-export const setRefreshedToken = (payload: AuthenticateUserSuccessPayload) => {
 
-    return {
-        type: ActionTypes.SET_REFRESHED_TOKEN,
-        payload: payload
-    } as setAuthenticatedUserAction;
+
+
+
+export const register = (command: RegisterCommand) => {
+    
+  return {
+      type: ActionTypes.REGISTER_USER_REQUEST,
+      payload: {
+        command: command,
+          user: null,
+          errors: null
+      }
+  }
+
 }
+
+export const registerFailure = (error: RegisterFailurePayload): RegisterAction => {
+  
+  return {
+      type: ActionTypes.REGISTER_USER_FAILURE,
+      payload: {
+        command: {},
+          user: {
+            emailVerified: false,
+            metadata: {},
+            providerData: {}},
+          errors: error
+      }
+  } as RegisterAction;
+}
+
+export const registerSuccess = (user: User): RegisterAction => {
+  
+  return {
+      type: ActionTypes.REGISTER_USER_SUCCESS,
+      payload: {
+        command: {},
+          user: user,
+          errors: {}
+      }
+  } as RegisterAction;
+}
+

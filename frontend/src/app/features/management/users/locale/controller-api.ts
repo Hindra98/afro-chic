@@ -62,61 +62,11 @@ const resetPasswordUser = (http: HttpClient) => async (payload: object) => {
 
 export class ControllerApi {
   private readonly http = new HttpClient();
-  public readonly whoIAm = Object.assign(whoIAm(this.http), {
-    useResponse: (
-      handler: (result: WhoIAmResult) => unknown,
-      args: Parameters<ReturnType<typeof whoIAm>>
-    ) => useDebounced(() => this.whoIAm().then(handler), Object.values(args), 500),
-  });
-  
-  public readonly getUsers = Object.assign(getUsers(this.http), {
-    useResponse: (
-      handler: (result: GetUsers) => unknown,
-      args: Parameters<ReturnType<typeof getUsers>>
-    ) => useDebounced(() => this.getUsers().then(handler), Object.values(args), 500),
-  });
-  
+
   public readonly getUser = Object.assign(getUser(this.http), {
     useResponse: (
       handler: (result: GetUser) => unknown,
       args: Parameters<ReturnType<typeof getUser>>[0]
     ) => useDebounced(() => this.getUser(args).then(handler), Object.values(args), 500),
   });
-  
-  public readonly updateUser = Object.assign(updateUser(this.http), {
-    useResponse: (
-      handler: (result: UpdateUserResult) => unknown,
-      args: Parameters<ReturnType<typeof updateUser>>[0]
-    ) => useDebounced(() => this.updateUser(args).then(handler), Object.values(args), 500),
-  });
-  
-  
-  public readonly addUser = Object.assign(addUser(this.http), {
-    useResponse: (
-      handler: (result: AddUserResult) => unknown,
-      args: Parameters<ReturnType<typeof addUser>>[0]
-    ) => useDebounced(() => this.addUser(args).then(handler), Object.values(args), 500),
-  });
-  
-  public readonly deleteUser = Object.assign(deleteUser(this.http), {
-    useResponse: (
-      handler: (result: DeleteUser) => unknown,
-      args: Parameters<ReturnType<typeof deleteUser>>[0]
-    ) => useDebounced(() => this.deleteUser(args).then(handler), Object.values(args), 500),
-  });
-  
-  public readonly lockUser = Object.assign(lockUser(this.http), {
-    useResponse: (
-      handler: (result: LockUserResult) => unknown,
-      args: Parameters<ReturnType<typeof lockUser>>[0]
-    ) => useDebounced(() => this.lockUser(args).then(handler), Object.values(args), 500),
-  });
-  
-  public readonly resetPasswordUser = Object.assign(resetPasswordUser(this.http), {
-    useResponse: (
-      handler: (result: ResetPasswordUserResult) => unknown,
-      args: Parameters<ReturnType<typeof resetPasswordUser>>[0]
-    ) => useDebounced(() => this.resetPasswordUser(args).then(handler), Object.values(args), 500),
-  });
-
 }

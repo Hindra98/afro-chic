@@ -1,11 +1,15 @@
 interface Product {
+  id?: string;
+  note?: string;
   name: string;
-  size: string;
-  price: number;
-  note: string;
-  id: string;
-  image?: string;
+  size?: string;
+  price?: number;
+  imageUrl?: string;
   description?: string;
+  created_at?: string;
+  category?: string;
+  house?: string;
+  stock?: string;
 }
 
 interface AllProducts {

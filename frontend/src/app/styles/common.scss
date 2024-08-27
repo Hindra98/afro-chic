@@ -158,29 +158,6 @@ button.disabled {
   }
 }
 
-.accept-change-password {
-  button {
-    min-width: 75px !important;
-    padding: 0 0 !important;
-  }
-
-  :first-child {
-    background-color: grey !important;
-  }
-
-  :first-child:hover {
-    background-color: #808080a0 !important;
-  }
-
-  :last-child {
-    background-color: $primary-color !important;
-  }
-
-  :last-child:hover {
-    background-color: $primary-color-pl !important;
-  }
-}
-
 .e-switch-wrapper .e-switch-inner.e-switch-active .e-switch-on {
   background-color: $primary-color !important;
 }
