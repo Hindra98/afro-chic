@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@svgr/webpack": "^8.1.0",
+    "firebase": "^10.13.0",
     "i18next": "^23.11.5",
     "react-i18next": "^14.1.2"
   },

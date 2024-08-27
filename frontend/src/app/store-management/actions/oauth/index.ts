@@ -1,3 +1,4 @@
+import { User } from "firebase/auth";
 import { AuthenticationConstants } from "../../../core/constants/authentication-contants";
 import { Jwt } from "../../../core/security/jwt";
 import { getStorage } from "../../../core/storage/storage";
@@ -160,5 +161,59 @@ export interface SignOutPayload {
 export interface SignOutAction {
     type: string;
     payload: SignOutPayload;
+}
+
+
+
+
+
+
+
+
+export interface RegisterStoreShape {
+
+  pending: boolean;
+  value: User;
+  Errors: string[];
+}
+
+export const initialStateRegister: RegisterStoreShape = { value: {
+
+  emailVerified: false,
+  metadata: {},
+  providerData: {}
+} as User, pending: false, Errors: []}
+
+export interface RegisterModelShape {
+}
+
+export interface RegisterFailurePayload {
+  errors: string[];
+}
+
+export interface RegisterRequest {
+  type: string;
+}
+
+export interface RegisterSuccess {
+
+  type: string;
+  payload: User;
+}
+
+export interface RegisterFailure {
+  type: string;
+  payload: RegisterFailurePayload;
+}
+
+export interface RegisterPayload {
+  command: RegisterCommand;
+  user: User;
+  errors: RegisterFailurePayload;
+}
+
+export interface RegisterAction {
+  type: string;
+  payload: RegisterPayload;
 }
 

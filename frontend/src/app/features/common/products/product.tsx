@@ -3,43 +3,73 @@ import { banner, ensemble, pull, vetement } from "../../../assets/images";
 import "../../../styles/components/_filter.scss";
 import { useState } from "react";
 import Button from "../../../components/form/Button";
+import { useParams } from "react-router-dom";
 
 const Product = () => {
-  const [quantity, setQuantity] = useState(0)
+  // const {idProduct} = useParams()
+  const [quantity, setQuantity] = useState(0);
   return (
     <div className="flex flex-col gap-4 w-full py-2 px-24">
-      <div className="product-details flex justify-start gap-5 xxs:flex-col xmd:flex-row">
-        <div className="img xmd:w-1/2">
-          <img src={banner} alt="Produit" className="w-full max-h-[500px]" />
+      {/** New code */}
+      <div className="md:flex md:items-center product-details">
+        <div className="w-full h-64 md:w-1/2 lg:h-96">
+          <img
+            className="h-full w-full rounded-md object-cover max-w-lg mx-auto"
+            src={banner}
+            alt="Produit - 1"
+          />
         </div>
-        <div className="detail flex flex-col items-start justify-between gap-1 xmd:w-1/2">
-          <h1 className="font-bold text-4xl pb-2">Nom du produit</h1>
-          <p className="note">
-            Note du produit <small>500pers</small>
-          </p>
-          <p className="font-bold">
-            Categorie: <span className="font-normal">Tenue traditionnelle</span>
-          </p>
-          <p className="font-bold">
-            Maison: <span className="font-normal">My Shop</span>
-          </p>
-          <p className="font-bold">
-            Statut: <span className="text-lime-700 font-medium">En stock</span>
-          </p>
-          <p className="font-bold text-3xl text-red-700">&euro;200</p>
-          <p className="font-normal text-pretty line-clamp-3">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium
-            necessitatibus similique aliquam, omnis, magni facilis maxime,
-            veniam voluptatem eum eveniet harum non ducimus temporibus fuga eius
-            quaerat soluta explicabo eaque.Lorem ipsum, dolor sit amet
-            consectetur adipisicing elit. Laudantium necessitatibus similique
-            aliquam, omnis, magni facilis maxime, veniam voluptatem eum eveniet
-            harum non ducimus temporibus fuga eius quaerat soluta explicabo
-            eaque.
-          </p>
-          <p className="font-normal flex flex-col gap-2">
-            <h2>Taille</h2>
-            <div className="flex items-center justify-start gap-2">
+        <div className="w-full max-w-lg mx-auto mt-5 md:ml-8 md:mt-0 md:w-1/2">
+          <h3 className="text-gray-700 uppercase text-lg">Nom du produit</h3>
+          <span className="text-gray-500 mt-3">&euro;200</span>
+          <hr className="my-3" />
+          <div className="mt-2">
+            <label className="text-gray-700 text-sm" htmlFor="count">
+              Quantité:
+            </label>
+            <div className="flex items-center mt-1 gap-2">
+              <button
+                className="text-gray-500 focus:outline-none focus:text-gray-600 max-w-5 w-5"
+                onClick={() =>
+                  setQuantity((prev) => (quantity > 0 ? prev - 1 : 0))
+                }
+              >
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </button>
+              <span className="text-gray-700 text-lg mx-2">{quantity}</span>
+              <button
+                className="text-gray-500 focus:outline-none focus:text-gray-600"
+                onClick={() => setQuantity((prev) => prev + 1)}
+              >
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div className="mt-3">
+            <label className="text-gray-700 text-sm" htmlFor="count">
+              Taille:
+            </label>
+            <div className="flex items-center mt-1 gap-4">
               <div className="size-selector">
                 <input
                   type="radio"
@@ -125,27 +155,50 @@ const Product = () => {
                 </label>
               </div>
             </div>
-          </p>
-          <p className="font-normal flex flex-col gap-2">
-            <h2>Quantité</h2>
-            <div className="flex flex-row items-center divide-x border w-fit">
-              <span onClick={()=>setQuantity(prev=>(quantity>0?prev-1:0))} className="icon minus-2icon- cursor-pointer size-8 text-center pt-1 hover:bg-primary active:bg-secondary transition"></span>
-              <span className="size-8 text-center pt-1">{quantity}</span>
-              <span onClick={()=>setQuantity(prev=>prev+1)} className="icon plus-2icon- cursor-pointer size-8 text-center pt-1 hover:bg-primary active:bg-secondary transition"></span>
-            </div>
-          </p>
-          <p className="flex flex-row items-center justify-start gap-4 me-auto pt-4">
-            <Button param={{type: 'button', name: "Ajouter au panier", css: "p-2"}} />
-          </p>
+          </div>
+          <div className="flex items-center mt-6 gap-2">
+            <Button
+              param={{ type: "button", name: "Passer à l'achat", css: "p-2 w-fit" }}
+            />
+            <Button
+              param={{
+                type: "button",
+                name: (
+                  <svg
+                    className="h-5 w-5 mx-auto"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                  </svg>
+                ),
+                css: "p-2 text-center",
+              }}
+            />
+          </div>
         </div>
       </div>
+      {/** New code */}
+
       <div className="details flex flex-col gap-3 xxs:w-full xmd:w-1/2">
         <h2 className="font-bold">Details du produit</h2>
         <hr className="" />
         <p className="text-pretty">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus labore maxime, quibusdam tempora ratione ullam nobis minus ducimus, placeat reiciendis, magnam cum blanditiis possimus! Nostrum dolor vitae deleniti blanditiis adipisci.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus labore maxime, quibusdam tempora ratione ullam nobis minus ducimus, placeat reiciendis, magnam cum blanditiis possimus! Nostrum dolor vitae deleniti blanditiis adipisci.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus labore maxime, quibusdam tempora ratione ullam nobis minus ducimus, placeat reiciendis, magnam cum blanditiis possimus! Nostrum dolor vitae deleniti blanditiis adipisci.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus labore
+          maxime, quibusdam tempora ratione ullam nobis minus ducimus, placeat
+          reiciendis, magnam cum blanditiis possimus! Nostrum dolor vitae
+          deleniti blanditiis adipisci. Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Natus labore maxime, quibusdam tempora ratione ullam
+          nobis minus ducimus, placeat reiciendis, magnam cum blanditiis
+          possimus! Nostrum dolor vitae deleniti blanditiis adipisci. Lorem
+          ipsum dolor sit amet consectetur adipisicing elit. Natus labore
+          maxime, quibusdam tempora ratione ullam nobis minus ducimus, placeat
+          reiciendis, magnam cum blanditiis possimus! Nostrum dolor vitae
+          deleniti blanditiis adipisci.
         </p>
       </div>
 
@@ -158,7 +211,7 @@ const Product = () => {
             price={102}
             size={"S"}
             note="4/5"
-            image={banner}
+            imageUrl={banner}
           />
           <Card
             id={"5"}
@@ -166,7 +219,7 @@ const Product = () => {
             price={41}
             size={"L"}
             note="4/5"
-            image={pull}
+            imageUrl={pull}
           />
           <Card
             id={"6"}
@@ -174,7 +227,7 @@ const Product = () => {
             price={72}
             size={"XXL"}
             note="4/5"
-            image={ensemble}
+            imageUrl={ensemble}
           />
           <Card
             id={"7"}
@@ -182,7 +235,7 @@ const Product = () => {
             price={35}
             size={"M"}
             note="4/5"
-            image={vetement}
+            imageUrl={vetement}
           />
         </div>
       </div>

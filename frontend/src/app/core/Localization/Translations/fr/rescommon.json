@@ -2101,6 +2101,14 @@
   "MODULE_COMMON_NAVBAR_SEARCH": "Rechercher",
   "MODULE_COMMON_NAVBAR_NOTIFICATIONS": "Notifications",
 
+  
+  "MODULE_COMMON_BANNER_FREE_SHIPPING": "Livraison gratuite",
+  "MODULE_COMMON_BANNER_ORDER": "Commandes supérieures à 200$",
+  "MODULE_COMMON_BANNER_MONEY_RETURNS": "Remboursement",
+  "MODULE_COMMON_BANNER_THIRTY_DAY": "Remboursement sous 30 jours",
+  "MODULE_COMMON_BANNER_SUPPORT": "Assistance disponible 24/7",
+  "MODULE_COMMON_BANNER_CUSTOMER_SUPPORT": "Assistance clientèle",
+
   "MODULE_COMMON_NAVBAR_CONTACT": "Contact",
   "MODULE_COMMON_NAVBAR_ADMINISTRATION": "Administration",
   "MODULE_COMMON_NAVBAR_SHOP": "Boutique",

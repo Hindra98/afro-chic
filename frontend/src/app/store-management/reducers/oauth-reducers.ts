@@ -1,6 +1,6 @@
 import { ActionTypes } from "../actions/constants/action-types";
 import { produce } from "immer";
-import { StoreShape, initialState, AuthenticateUserAction, VerifyPinCodeStoreShape, initialStatePinCode, VerifyPinCodeAction, SignOutStoreShape, SignOutAction, initialStateSignOut } from "../actions/oauth";
+import { StoreShape, initialState, AuthenticateUserAction, VerifyPinCodeStoreShape, initialStatePinCode, VerifyPinCodeAction, SignOutStoreShape, SignOutAction, initialStateSignOut, RegisterStoreShape, initialStateRegister, RegisterAction } from "../actions/oauth";
 import { Jwt } from "../../core/security/jwt";
 
 export const authenticatedUserReducer = (state: StoreShape = initialState , args: AuthenticateUserAction ) : StoreShape => {
@@ -133,6 +133,33 @@ export const signOutReducer = (state: SignOutStoreShape = initialStateSignOut, a
       return produce(state, (draftState) => {
         draftState.Errors = args.payload?.errors.errors;
         draftState.value.refreshToken = "";
+        draftState.pending = false;
+      });
+
+    default:
+      return state;
+  }
+};
+
+export const registerReducer = (state: RegisterStoreShape = initialStateRegister, args: RegisterAction): RegisterStoreShape => {
+
+  switch (args.type) {
+
+    case ActionTypes.REGISTER_USER_SUCCESS:
+      return produce(state, (draftState) => {
+        draftState.value = args.payload?.user;
+        draftState.Errors = [];
+        draftState.pending = false;
+      });
+
+    case ActionTypes.REGISTER_USER_REQUEST:
+      return produce(state, (draftState) => {
+        draftState.pending = true;
+      });
+
+    case ActionTypes.REGISTER_USER_FAILURE:
+      return produce(state, (draftState) => {
+        draftState.Errors = args.payload?.errors.errors;
         draftState.pending = false;
       });
 

@@ -39,4 +39,5 @@ export const ColorConstants = {
 
 export const CardConstant = {
   CART: "cart",
+  FAVORIS: "favorites",
 }

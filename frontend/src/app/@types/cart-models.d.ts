@@ -5,6 +5,11 @@ interface CartItem {
   quantity: number;
 }
 
+interface FavItem {
+  id: string;
+  name: string;
+}
+
 interface Cart {
   idUser : string;
   cart : CartItem[];

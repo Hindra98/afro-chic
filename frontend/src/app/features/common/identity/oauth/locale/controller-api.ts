@@ -1,5 +1,7 @@
+import { Auth, createUserWithEmailAndPassword, getAuth, sendEmailVerification, User } from "firebase/auth";
 import { useDebounced } from "../../../../../core/hooks";
 import { HttpClient } from "../../../../../http/http-client";
+import { app_firebase } from "../../../../../http/firebase/config";
 
 
 const authenticateUser = (http: HttpClient) => async (payload: object) => {
@@ -41,16 +43,35 @@ const revokeToken = (http: HttpClient) => async (payload: object) => {
     return response.data as revokeTokenResult;
 }
 
-const register = (http: HttpClient) => async (payload: object) => {
+const register = (auth: Auth) => async (payload: {email: string, password: string}) => {
     
-    const response = await http.post("/v1/oauth/register", payload);
+    try {
+      const userCredential  = await createUserWithEmailAndPassword(auth, payload.email, payload.password);
+      const user = userCredential.user;
+      
+      // Envoyer l'email de vérification
+      await sendEmailVerification(user);
+      console.log("Response register saga", user);
+        return user
+    } catch(error) {
+      console.log("Error Register: ", error);
+      return error;
+    }
 
-    return response.data as registerResult;
+    // return response.data as registerResult;
 }
 
 export class ControllerApi {
 
      private readonly http = new HttpClient();
+     private readonly auth = getAuth(app_firebase);
+
+
+     public readonly register = Object.assign(register(this.auth), {
+        useResponse: (
+            handler: (result: unknown) => unknown,
+            args: Parameters<ReturnType<typeof register>>[0]) => useDebounced(() => this.register(args).then(handler), Object.values(args), 500)});
+
 
      public readonly authenticateUser = Object.assign(authenticateUser(this.http), {
          useResponse: (
@@ -76,10 +97,5 @@ export class ControllerApi {
         useResponse: (
             handler: (result: revokeTokenResult) => unknown,
             args: Parameters<ReturnType<typeof revokeToken>>[0]) => useDebounced(() => this.revokeToken(args).then(handler), Object.values(args), 500)});
-
-     public readonly register = Object.assign(register(this.http), {
-        useResponse: (
-            handler: (result: registerResult) => unknown,
-            args: Parameters<ReturnType<typeof register>>[0]) => useDebounced(() => this.register(args).then(handler), Object.values(args), 500)});
 
 }

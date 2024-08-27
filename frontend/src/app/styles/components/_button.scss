@@ -1,13 +1,5 @@
 @use '../common';
 
-button:not(.e-msg-close-icon) {
-    min-width: 75px !important;
-}
-
-button {
-  
-}
-
 button.cancelBtn {
     background-color: grey !important;
     color: #fff !important;

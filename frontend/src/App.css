@@ -1,42 +1,9 @@
-/* Light Mode */
-
-@import "../node_modules/@syncfusion/ej2-base/styles/tailwind.css";
-@import "../node_modules/@syncfusion/ej2-buttons/styles/tailwind.css";
-@import "../node_modules/@syncfusion/ej2-react-buttons/styles/tailwind.css";
-@import "../node_modules/@syncfusion/ej2-react-navigations/styles/tailwind.css";
-@import "../node_modules/@syncfusion/ej2-react-notifications/styles/tailwind.css";
-@import "../node_modules/@syncfusion/ej2-splitbuttons/styles/tailwind.css";
-@import "../node_modules/@syncfusion/ej2-inputs/styles/tailwind.css";
-@import "../node_modules/@syncfusion/ej2-react-dropdowns/styles/tailwind.css";
-@import "../node_modules/@syncfusion/ej2-popups/styles/tailwind.css";
-@import "../node_modules/@syncfusion/ej2-navigations/styles/tailwind.css";
-@import "../node_modules/@syncfusion/ej2-image-editor/styles/tailwind.css";
-@import "../node_modules/@syncfusion/ej2-react-popups/styles/tailwind.css";
-@import "../node_modules/@syncfusion/ej2-react-lists/styles/tailwind.css";
-@import "../node_modules/@syncfusion/ej2-notifications/styles/tailwind.css";
-@import "../node_modules/@syncfusion/ej2-calendars/styles/tailwind.css";
-@import "../node_modules/@syncfusion/ej2-dropdowns/styles/tailwind.css";
-@import "../node_modules/@syncfusion/ej2-react-grids/styles/tailwind.css";
 
 
-/* Dark Mode */
-/* 
-@import '../node_modules/@syncfusion/ej2-base/styles/tailwind-dark.css';
-@import '../node_modules/@syncfusion/ej2-buttons/styles/tailwind-dark.css';
-@import '../node_modules/@syncfusion/ej2-react-buttons/styles/tailwind-dark.css';
-@import '../node_modules/@syncfusion/ej2-react-navigations/styles/tailwind-dark.css';
-@import '../node_modules/@syncfusion/ej2-react-notifications/styles/tailwind-dark.css';
-@import "../node_modules/@syncfusion/ej2-splitbuttons/styles/tailwind-dark.css";
-@import "../node_modules/@syncfusion/ej2-inputs/styles/tailwind-dark.css";
-@import "../node_modules/@syncfusion/ej2-react-dropdowns/styles/tailwind-dark.css";
-@import "../node_modules/@syncfusion/ej2-popups/styles/tailwind-dark.css";
-@import "../node_modules/@syncfusion/ej2-navigations/styles/tailwind-dark.css";
-@import "../node_modules/@syncfusion/ej2-image-editor/styles/tailwind-dark.css";
-@import "../node_modules/@syncfusion/ej2-react-popups/styles/tailwind-dark.css";
-@import "../node_modules/@syncfusion/ej2-react-lists/styles/tailwind-dark.css";
-@import '../node_modules/@syncfusion/ej2-calendars/styles/tailwind-dark.css';
-@import '../node_modules/@syncfusion/ej2-dropdowns/styles/tailwind-dark.css';
-@import "../node_modules/@syncfusion/ej2-react-grids/styles/tailwind-dark.css";
-*/
+@import "../node_modules/slick-carousel/slick/slick.css";
+@import "../node_modules/slick-carousel/slick/slick-theme.css";
 
-@import "../node_modules/@syncfusion/ej2-icons/styles/tailwind.css";
+.slick-prev, .slick-next {
+  display: block !important;
+  z-index: 40 !important;
+}

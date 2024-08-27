@@ -57,7 +57,7 @@ export default function InputWithIcon({
           disabled={disabled}
         />
         {eye && <span
-          className={`e-icons cursor-pointer text-xl font-medium ms-2 ${showPassword ? "e-eye-slash" : "e-eye"}`}
+          className={`icon cursor-pointer text-xl font-medium ms-2 ${showPassword ? "eye-officon-" : "eyeicon-"}`}
           onClick={() => setShowPassword(!showPassword)}
         ></span>}
       </div>
@@ -96,18 +96,10 @@ export const InputWithoutIcon = ({
           autoComplete="off"
           disabled={disabled}
         />
-        {eye &&
-          (showPassword ? (
-            <span
-              className="e-icons e-eye-slash cursor-pointer text-2xl font-medium"
-              onClick={() => setShowPassword(!showPassword)}
-            ></span>
-          ) : (
-            <span
-              className="e-icons e-eye cursor-pointer text-2xl font-medium"
-              onClick={() => setShowPassword(!showPassword)}
-            ></span>
-          ))}
+        {eye && <span
+          className={`icon cursor-pointer text-xl font-medium ms-2 ${showPassword ? "eye-officon-" : "eyeicon-"}`}
+          onClick={() => setShowPassword(!showPassword)}
+        ></span>}
       </div>
     </>
   );

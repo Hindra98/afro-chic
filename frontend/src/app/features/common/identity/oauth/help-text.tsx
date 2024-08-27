@@ -1,10 +1,10 @@
 import appStore from "../../../../assets/appstore.png";
 import banner from "../../../../assets/images/banner/banner-auth.jpg";
 import { Link } from "react-router-dom";
-import { useLocalizer } from "../../../../core/Localization";
+import { useTranslation } from "react-i18next";
 
 const HelpText = () => {
-  const commonLocalizer = useLocalizer("Common-ResCommon");
+  const { t } = useTranslation();
   return (
     <section className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
       <img
@@ -20,11 +20,11 @@ const HelpText = () => {
         </Link>
 
         <h2 className="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-          {commonLocalizer("MODULE_COMMON_AUTHENTICATION_SCREEN_LOGIN_TITLE")}
+          {t("MODULE_COMMON_AUTHENTICATION_SCREEN_LOGIN_TITLE")}
         </h2>
 
         <p className="mt-4 leading-relaxed text-white/90">
-          {commonLocalizer(
+          {t(
             "MODULE_COMMON_AUTHENTICATION_SCREEN_LOGIN_HELP_TEXT"
           )}{" "}
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam

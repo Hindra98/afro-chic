@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { getStorage } from "../core/storage/storage";
 import rootReducer from "./reducers/index";
 import createSagaMiddleware from "redux-saga";
+// import storage from 'redux-persist/lib/storage'
 import rootSaga from "./sagas";
 import { Jwt } from "../core/security/jwt";
 import { AuthenticationConstants } from "../core/constants/authentication-contants";
@@ -26,6 +27,12 @@ const loadAuthenticatedUser = (): AuthenticateUserSuccessPayload => {
   };
   return authenticateUser;
 };
+
+// const persistConfig = {
+//   key: "root",
+//   storage,
+//   whitelist: ["authenticatedUser"],
+// }
       
     const partialState: Partial<any> = {
         authenticatedUser: {
@@ -34,6 +41,8 @@ const loadAuthenticatedUser = (): AuthenticateUserSuccessPayload => {
     };
 
 const sagaMiddleware = createSagaMiddleware();
+
+// const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: rootReducer,

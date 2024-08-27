@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useLocalizer } from "../../../core/Localization";
 import "../../../styles/_search-input.scss";
+import { useTranslation } from "react-i18next";
 
 const SearchBox = () => {
-  const commonLocalizer = useLocalizer("Common-ResCommon");
+  const { t } = useTranslation();
 
   const [headerViewModel, setHeaderViewModel] = useState({
     search: "",
@@ -29,7 +29,7 @@ const SearchBox = () => {
         type="search"
         id="search"
         name="search"
-        placeholder={commonLocalizer("MODULE_COMMON_NAVBAR_SEARCH")}
+        placeholder={t("MODULE_COMMON_NAVBAR_SEARCH")}
         className="search-input w-full outline-none border-none"
         value={headerViewModel.search}
         autoComplete="off"

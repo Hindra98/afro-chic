@@ -1,17 +1,48 @@
 // import { useState } from "react";
 
+import { useTranslation } from "react-i18next";
 import Button from "../../../components/form/Button";
 import "../../../styles/components/_filter.scss";
+import { useState } from "react";
 
 const Filter = () => {
+  const { t } = useTranslation();
+  const [open, setOpen] = useState(true);
   // const [itemsPerPage, setItemsPerPage] = useState(48);
   // const itemsPerPageFromBanner = (itemsPerPage) => {
   //   setItemsPerPage(itemsPerPage);
   // };
 
   return (
-    <div className="w-fit py-1 px-4 shadow rounded">
-      <form className="divide-y divide-gray-200 space-y-5">
+    <div
+      className={` ${
+        open ? "w-72" : "w-10 "
+      } bg-fourth h-screen pt-8  duration-300 fixed`}
+    >
+      <div className={`absolute cursor-pointer size-8 -right-[16px] top-9 border-4 border-secondary bg-white rounded-full`} onClick={() => setOpen(!open)}>
+        <span
+          onClick={() => setOpen(!open)}
+          className={`icon block absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-[20px] text-secondary ${open ? "left-diricon-" : "right-diricon-"}`}
+        ></span>
+      </div>
+
+      <div className="flex gap-x-4 items-center">
+        <img
+          src="./src/assets/logo.png"
+          className={`cursor-pointer duration-500 ${open && "rotate-[360deg]"}`}
+        />
+        <h1
+          className={` origin-left font-medium text-xl duration-200 ${
+            !open && "scale-0"
+          }`}
+        >
+          Afrochic
+        </h1>
+      </div>
+
+      <form
+        className={`divide-y divide-gray-200 space-y-5 pt-6 px-4 pb-2 ${open ? "block" : "hidden"} transition`}
+      >
         <div>
           <h3 className="text-xl text-gray-800 mb-3 uppercase font-bold">
             Categories

@@ -27,6 +27,9 @@ const ForgotPassword = lazy(
 const ResetPassword = lazy(
   () => import("./app/features/common/identity/accounts/reset-password")
 );
+const Account = lazy(
+  () => import("./app/features/common/identity/accounts/profile/account")
+);
 const Product = lazy(
   () =>
     import(
@@ -50,10 +53,6 @@ const Cart = lazy(
     import(
       "./app/features/common/cart/cart"
     )
-);
-const MyProfile = lazy(
-  () =>
-    import("./app/features/common/identity/my-profile/my-profile/my-profile")
 );
 const Users = lazy(
   () => import("./app/features/management/users/user-data-grid")
@@ -104,7 +103,7 @@ export const router = createBrowserRouter(
             element={<PrivateRoute children={<Cart />} />}
           />
           <Route
-            path="/product"
+            path="/product/:idProduct"
             element={<PrivateRoute children={<Product />} />}
           />
           <Route
@@ -118,12 +117,12 @@ export const router = createBrowserRouter(
           element={<OpenRouteLayout />}
           errorElement={<RouteErrorBoundary />}
         >
-          <Route index element={<MyProfile />} />
           <Route path="login" element={<Authentication />} />
           <Route path="register" element={<Register />} />
           <Route path="verify-identity" element={<VerifyIdentity />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="reset-password" element={<ResetPassword />} />
+          <Route path="profil" element={<Account />} />
         </Route>
 
         <Route

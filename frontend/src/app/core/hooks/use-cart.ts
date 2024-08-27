@@ -1,35 +1,58 @@
 import { useEffect, useState } from "react";
 import { getStorage, setStorage } from "../storage/storage";
 import { CardConstant } from "../constants/common-constants";
+import { toast } from "react-toastify";
+
+// getting the values of local storage
+const getDatafromLS = () => {
+  const data = getStorage<string>(CardConstant.CART);
+  if (data) {
+    return JSON.parse(data);
+  } else {
+    return [];
+  }
+};
 
 const useCart = () => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [total, setTotal] = useState(0);
+  const [cartItems, setCartItems] = useState(getDatafromLS());
 
   useEffect(() => {
-    const storedCart = getStorage<string>(CardConstant.CART);
-    if (storedCart) setCartItems(JSON.parse(storedCart));
-  }, []);
-
-  useEffect(() => {
-    const newTotal = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-    setTotal(newTotal);
     setStorage(CardConstant.CART, JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const addItem = (item: CartItem) => {
-    const oldItem = cartItems.find((cartItem) => cartItem.id === item.id);
-    if (oldItem) oldItem.quantity += item.quantity;
-    else setCartItems([...cartItems, item]);
+  const addItem = (item: Product) => {
+    setCartItems((prevCart) => {
+      const oldItem = prevCart.find((cartItem) => cartItem.id === item.id);
+      if (oldItem)
+        return prevCart.map((cardItem) =>
+          cardItem.id === item.id
+            ? { ...cardItem, quantity: cardItem.quantity + 1 }
+            : cardItem
+        );
+      return [...prevCart, { ...item, quantity: 1 }];
+    });
+    toast(item.name + " ajouté au panier avec succèss!");
   };
+
   const removeItem = (id: string) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
+    setCartItems((prevCart) => {
+      const oldItem = prevCart.find((cartItem) => cartItem.id === id);
+      if (oldItem && oldItem.quantity > 1)
+        return prevCart.map((cardItem) =>
+          cardItem.id === id
+            ? { ...cardItem, quantity: cardItem.quantity - 1 }
+            : cardItem
+        );
+      return prevCart.filter((item) => item.id !== id);
+    });
+    toast("Article retiré du panier avec succèss!");
   };
   const emptyCart = () => {
     setCartItems([]);
+    toast("Vous avez vidé le panier avec succèss!");
   };
 
-  return { cartItems, total, emptyCart, addItem, removeItem };
+  return { cartItems, emptyCart, addItem, removeItem };
 };
 
 export default useCart;
